@@ -1,9 +1,23 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
+    <ion-buttons slot="end" class="toolbar-buttons">
+      <button class="notification-button">
+        <ion-icon name="file-tray-stacked-outline"></ion-icon>
+        <span class="notifications-badge"></span>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <h1>Hello World!</h1>
+  <div class="container">
+    <div class="appName1">Bet</div>
+    <div class="appName2">Ledger</div>
+  </div>
+
+  <div class="button-container">
+    <button class="control-button">Fixture</button>
+    <button class="control-button">Place Bet</button>
+    <button class="control-button">History</button>
+  </div>
 </ion-content>

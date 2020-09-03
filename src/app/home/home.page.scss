@@ -1,0 +1,75 @@
+ion-header ion-toolbar {
+  --background: transparent;
+}
+
+.toolbar-buttons button {
+  padding: 0;
+  margin: 10px;
+  background: transparent;
+  outline: none;
+}
+.toolbar-buttons button ion-icon {
+  font-size: 50px;
+  color: var(--ion-color-light-shade);
+}
+@media (prefers-color-scheme: dark) {
+  .toolbar-buttons button ion-icon {
+    color: var(--ion-color-medium);
+  }
+}
+
+.notification-button {
+  position: relative;
+}
+.notifications-badge {
+  background: var(--ion-color-secondary);
+  color: var(--ion-color-secondary-contrast);
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  border-radius: 1000px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 20px;
+  min-width: 20px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.container {
+  min-height: 50%;
+}
+
+.appName1,
+.appName2 {
+  position: absolute;
+  height: 50px;
+  top: 195px;
+
+  font-weight: bolder;
+  font-size: 48px;
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.appName1 {
+  width: 80px;
+  left: 80px;
+  color: var(--ion-color-success);
+}
+
+.appName2 {
+  width: 150px;
+  left: 160px;
+  color: var(--ion-color-danger);
+}
+
+.button-container {
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
