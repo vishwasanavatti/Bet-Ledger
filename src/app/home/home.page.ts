@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage implements OnInit {
-  constructor() {}
+export class HomePage {
+  constructor(private navController: NavController) {}
 
-  ngOnInit() {}
+  goToFixture() {
+    this.navController.navigateForward(['./home/fixture']);
+  }
 }

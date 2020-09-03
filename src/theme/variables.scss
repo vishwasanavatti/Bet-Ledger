@@ -74,6 +74,29 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /*Buttons*/
+  .control-button {
+    font-size: 24px;
+    color: var(--ion-color-light-contrast);
+    padding: 1rem;
+    background: #e2dc4a;
+    border-radius: 30px;
+    font-weight: bolder;
+    letter-spacing: 4px;
+    width: 75%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  ion-header,
+  ion-content {
+    background: #131313;
+  }
+  ion-content {
+    --background: transparent;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -227,20 +250,5 @@
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
-  }
-
-  /*Buttons*/
-  .control-button {
-    font-size: 36px;
-    color: var(--ion-color-medium-contrast);
-    padding: 1rem;
-    background: #e2dc4a;
-    border-radius: 30px;
-    font-weight: 500;
-    letter-spacing: 4px;
-    width: 75%;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
   }
 }

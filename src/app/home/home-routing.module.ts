@@ -6,8 +6,12 @@ import { HomePage } from './home.page';
 const routes: Routes = [
   {
     path: '',
-    component: HomePage
-  }
+    component: HomePage,
+  },
+  {
+    path: 'fixture',
+    loadChildren: () => import('./fixture/fixture.module').then( m => m.FixturePageModule)
+  },
 ];
 
 @NgModule({

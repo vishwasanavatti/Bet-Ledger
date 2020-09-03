@@ -3,7 +3,7 @@
     <ion-buttons slot="end" class="toolbar-buttons">
       <button class="notification-button">
         <ion-icon name="file-tray-stacked-outline"></ion-icon>
-        <span class="notifications-badge"></span>
+        <span class="notifications-badge">1</span>
       </button>
     </ion-buttons>
   </ion-toolbar>
@@ -16,7 +16,7 @@
   </div>
 
   <div class="button-container">
-    <button class="control-button">Fixture</button>
+    <button class="control-button" (click)="goToFixture()">Fixture</button>
     <button class="control-button">Place Bet</button>
     <button class="control-button">History</button>
   </div>
