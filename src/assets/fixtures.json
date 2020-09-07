@@ -1,79 +1,59 @@
 {
-   "fixtures" : [
-      {
-         "team1" : "MI",
-         "team2" : "CSK",
-         "date" : "19/09"
-      },
-      {
-         "team1" : "Angular",
-         "team2" : "Front-end development framework",
-         "date" : "Google"
-      },
-      {
-         "team1" : "TypeScript",
-         "team2" : "Superset of JavaScript",
-         "date" : "Microsoft"
-      },
-      {
-         "team1" : "Apache Cordova",
-         "team2" : "Native application development framework",
-         "date" : "Apache"
-      },
-      {
-         "team1" : "Ionic Native",
-         "team2" : "Apache Cordova compatible plugins",
-         "date" : "Drifty"
-      },
-      {
-         "team1" : "HTML5",
-         "team2" : "Mark-up language and API's",
-         "date" : "W3C"
-      },
-      {
-         "team1" : "Sass",
-         "team2" : "CSS pre-processor",
-         "date" : "W3C"
-      },
-      {
-         "team1" : "Ionic CLI",
-         "team2" : "The engine behind the framework",
-         "date" : "Drifty"
-      },
-      {
-         "team1" : "Stencil",
-         "team2" : "Web component generator",
-         "date" : "Drifty"
-      },
-      {
-         "team1" : "Firebase",
-         "team2" : "Backend as a Service (BaaS)",
-         "date" : "Firebase/Google"
-      },
-      {
-         "team1" : "MongoDB",
-         "team2" : "NoSQL database solution",
-         "date" : "Mongo"
-      },
-      {
-         "team1" : "PHP",
-         "team2" : "Server-side scripting language",
-         "date" : "Zend"
-      },
-      {
-         "team1" : "MySQL",
-         "team2" : "Popular open-source database",
-         "date" : "Oracle"
-      },
-      {
-         "team1" : "PouchDB",
-         "team2" : "Client-side NoSQL database abstraction solution",
-         "date" : "PouchDB"
-      },
-      {
-         "team1" : "CouchDB",
-         "team2" : "Server-side NoSQL database solution",
-         "date" : "CouchDB"
-      }
-   ]
+  "fixtures": [
+    {
+      "team1": "MI",
+      "team2": "CSK",
+      "date": "19/09"
+    },
+    {
+      "team1": "DC",
+      "team2": "KXIP",
+      "date": "20/09"
+    },
+    {
+      "team1": "SRH",
+      "team2": "RCB",
+      "date": "21/09"
+    },
+    {
+      "team1": "RR",
+      "team2": "CSK",
+      "date": "22/09"
+    },
+    {
+      "team1": "KKR",
+      "team2": "MI",
+      "date": "23/09"
+    },
+    {
+      "team1": "KXIP",
+      "team2": "RCB",
+      "date": "24/09"
+    },
+    {
+      "team1": "CSK",
+      "team2": "DC",
+      "date": "25/09"
+    },
+    {
+      "team1": "KKR",
+      "team2": "SRH",
+      "date": "26/09"
+    },
+    {
+      "team1": "RR",
+      "team2": "KXIP",
+      "date": "27/09"
+    },
+    {
+      "team1": "RCB",
+      "team2": "MI",
+      "date": "28/09"
+    },
+    {
+      "team1": "DC",
+      "team2": "SRH",
+      "date": "29/09"
+    }
+  ]
 }
