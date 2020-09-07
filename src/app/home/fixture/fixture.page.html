@@ -9,8 +9,13 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-searchbar
+  placeholder="Search"
+  [(ngModel)]="searchTerm"
+  (ionInput)="filter()"
+></ion-searchbar>
 <ion-content>
-  <ion-card (click)="check()" *ngFor="let data of fixtures; let i = index">
+  <ion-card (click)="check()" *ngFor="let data of filterItems; let i = index">
     <ion-card-header class="ion-no-padding">
       <ion-card-title class="cardTitle">Match {{i+1}}</ion-card-title>
     </ion-card-header>
