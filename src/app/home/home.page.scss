@@ -12,11 +12,6 @@ ion-header ion-toolbar {
   font-size: 50px;
   color: var(--ion-color-light-shade);
 }
-@media (prefers-color-scheme: dark) {
-  .toolbar-buttons button ion-icon {
-    color: var(--ion-color-medium);
-  }
-}
 
 .notification-button {
   position: relative;

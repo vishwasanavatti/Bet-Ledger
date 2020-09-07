@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>fixture</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card (click)="check()" *ngFor="let data of fixtures; let i = index">
+    <ion-card-header class="ion-no-padding">
+      <ion-card-title class="cardTitle">Match {{i+1}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="fixtureStyle">
+      <ion-col class="col">{{data.team1}}</ion-col>
+      <ion-col>vs</ion-col>
+      <ion-col class="col">{{data.team2}}</ion-col>
+      <ion-row><ion-col class="date">{{data.date}}</ion-col></ion-row>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

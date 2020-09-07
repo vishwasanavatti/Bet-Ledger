@@ -3,7 +3,9 @@
     <ion-buttons slot="end" class="toolbar-buttons">
       <button class="notification-button">
         <ion-icon name="file-tray-stacked-outline"></ion-icon>
-        <span class="notifications-badge">1</span>
+        <span class="notifications-badge" *ngIf="activeBets"
+          >{{this.activeBets}}</span
+        >
       </button>
     </ion-buttons>
   </ion-toolbar>
