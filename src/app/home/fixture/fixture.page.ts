@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'app-fixture',
@@ -10,7 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class FixturePage implements OnInit {
   fixtures: any;
-  searchTerm: string;
+  searchValue: string;
   filterItems: any;
 
   constructor(private navController: NavController, private http: HttpClient) {}
@@ -28,26 +27,40 @@ export class FixturePage implements OnInit {
       });*/
   }
 
-  filter() {
-    if (this.searchTerm && this.searchTerm.trim() !== ' ') {
+  search() {
+    if (this.searchValue && this.searchValue.trim() !== ' ') {
       this.filterItems = this.fixtures.filter(
         (item) =>
           item.team1
             .toLowerCase()
-            .indexOf(this.searchTerm.toLowerCase().trim()) > -1 ||
+            .indexOf(this.searchValue.toLowerCase().trim()) > -1 ||
           item.team2
             .toLowerCase()
-            .indexOf(this.searchTerm.toLowerCase().trim()) > -1 ||
+            .indexOf(this.searchValue.toLowerCase().trim()) > -1 ||
           item.date
             .toLowerCase()
-            .indexOf(this.searchTerm.toLowerCase().trim()) > -1
+            .indexOf(this.searchValue.toLowerCase().trim()) > -1
       );
     } else {
       this.filterItems = this.fixtures;
     }
   }
 
-  check() {
+  expand(data): void {
+    if (data.expanded) {
+      data.expanded = false;
+    } else {
+      this.filterItems.map((item) => {
+        if (item === data) {
+          item.expanded = !item.expanded;
+        } else {
+          item.expanded = false;
+        }
+      });
+    }
+  }
+
+  addBet() {
     alert('hey');
   }
 

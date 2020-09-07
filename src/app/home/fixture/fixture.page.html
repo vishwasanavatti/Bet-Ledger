@@ -10,20 +10,84 @@
 </ion-header>
 
 <ion-searchbar
+  class="searchBar"
   placeholder="Search"
-  [(ngModel)]="searchTerm"
-  (ionInput)="filter()"
+  [(ngModel)]="searchValue"
+  (ionInput)="search()"
 ></ion-searchbar>
 <ion-content>
-  <ion-card (click)="check()" *ngFor="let data of filterItems; let i = index">
-    <ion-card-header class="ion-no-padding">
+  <ion-card *ngFor="let data of filterItems; let i = index">
+    <ion-card-header class="ion-no-padding" (click)="expand(data)">
       <ion-card-title class="cardTitle">Match {{i+1}}</ion-card-title>
+      <div class="fixtureStyle">
+        <ion-col class="col">{{data.team1}}</ion-col>
+        <ion-col>vs</ion-col>
+        <ion-col class="col">{{data.team2}}</ion-col>
+        <ion-row><ion-col class="date">{{data.date}}</ion-col></ion-row>
+      </div>
     </ion-card-header>
-    <ion-card-content class="fixtureStyle">
-      <ion-col class="col">{{data.team1}}</ion-col>
-      <ion-col>vs</ion-col>
-      <ion-col class="col">{{data.team2}}</ion-col>
-      <ion-row><ion-col class="date">{{data.date}}</ion-col></ion-row>
+
+    <ion-card-content class="ion-no-padding card-content">
+      <app-expandable expandHeight="100px" [expanded]="data.expanded">
+        <ion-row>
+          <ion-radio-group>
+            <ion-label class="labelHeader">Team</ion-label>
+            <ion-item>
+              <ion-label>{{data.team1}}</ion-label>
+              <ion-radio slot="end" value="apple"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>{{data.team2}}</ion-label>
+              <ion-radio slot="end" value="grape"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-radio-group>
+            <ion-label class="labelHeader">ratio</ion-label>
+            <ion-item>
+              <ion-label>give</ion-label>
+              <ion-radio slot="end" value="apple"></ion-radio>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>get</ion-label>
+              <ion-radio slot="end" value="grape"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+
+          <ion-col class="ion-no-padding inputStyle">
+            <ion-item class="ion-no-padding">
+              <ion-icon
+                class="ion-no-padding"
+                slot="start"
+                name="trending-up"
+                size="small"
+              ></ion-icon>
+              <ion-input class="ion-no-padding" type="text" placeholder="ratio">
+              </ion-input>
+            </ion-item>
+            <ion-item class="ion-no-padding">
+              <ion-icon
+                class="ion-no-padding"
+                slot="start"
+                name="cash-outline"
+                size="small"
+              ></ion-icon>
+              <ion-input
+                class="ion-no-padding"
+                type="text"
+                placeholder="Amount"
+              >
+              </ion-input>
+            </ion-item>
+          </ion-col>
+
+          <ion-button (click)="addBet()" class="saveButton">
+            <ion-icon name="save"></ion-icon>
+          </ion-button>
+        </ion-row>
+      </app-expandable>
     </ion-card-content>
   </ion-card>
 </ion-content>
