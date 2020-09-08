@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'update-bet',
     loadChildren: () => import('./update-bet/update-bet.module').then( m => m.UpdateBetPageModule)
   },
+  {
+    path: 'history',
+    loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
+  },
 ];
 
 @NgModule({
