@@ -69,9 +69,9 @@ export class StorageService {
     return await new Promise((resolve, reject) => {
       this.betLedgerDB
         .then((localForageObject) => {
-          localForageObject.getItem('id').then((val: number) => {
+          localForageObject.getItem('betid').then((val: number) => {
             const nextId: number = val ? val + 1 : 1;
-            localForageObject.setItem('id', nextId);
+            localForageObject.setItem('betid', nextId);
             resolve(nextId);
           });
         })
@@ -120,7 +120,7 @@ export class StorageService {
    * @param dbObject The storage object
    * @returns Promise of array of forms data object
    */
-  async getAllIBets<T>(): Promise<Array<T>> {
+  async getAllBets<T>(): Promise<Array<T>> {
     const items: Array<T> = [];
     return await new Promise((resolve, reject) => {
       this.betLedgerDB

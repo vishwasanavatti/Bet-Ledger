@@ -25,7 +25,7 @@ export class FixturePage implements OnInit {
   ) {}
 
   betData: Ledger = {
-    id: 0,
+    id: null,
     matchNumber: 0,
     teamFor: '',
     teamAgainst: '',
@@ -34,6 +34,7 @@ export class FixturePage implements OnInit {
     ratioValue: 0,
     amount: 0,
     isActive: false,
+    result: '',
   };
 
   ngOnInit() {
@@ -68,7 +69,22 @@ export class FixturePage implements OnInit {
     }
   }
 
-  expand(data): void {
+  expand(data: any): void {
+    this.betData = {
+      id: null,
+      matchNumber: 0,
+      teamFor: '',
+      teamAgainst: '',
+      date: '',
+      ratioType: '',
+      ratioValue: 0,
+      amount: 0,
+      isActive: false,
+      result: '',
+    };
+    this.ratio = null;
+    this.amt = null;
+
     if (data.expanded) {
       data.expanded = false;
     } else {
@@ -82,10 +98,7 @@ export class FixturePage implements OnInit {
     }
   }
 
-  addBet(data, i) {
-    this.storage.getNextId().then((key) => {
-      this.betData.id = key;
-    });
+  addBet(data: any, i: number): void {
     this.betData.isActive = true;
     this.betData.date = data.date;
     this.betData.matchNumber = i + 1;
@@ -96,7 +109,10 @@ export class FixturePage implements OnInit {
     } else {
       this.betData.teamAgainst = data.team1;
     }
-    this.storage.addBet(this.betData.id.toString(), this.betData);
+    this.storage.getNextId().then((key) => {
+      this.betData.id = key;
+      this.storage.addBet(this.betData.id.toString(), this.betData);
+    });
   }
 
   goBack() {

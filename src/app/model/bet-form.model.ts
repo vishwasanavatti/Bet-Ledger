@@ -8,4 +8,5 @@ export interface Ledger {
   ratioValue: number;
   amount: number;
   isActive: boolean;
+  result: string;
 }

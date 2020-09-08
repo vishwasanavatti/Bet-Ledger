@@ -12,4 +12,12 @@ export class HomePage {
   goToFixture() {
     this.navController.navigateForward(['./home/fixture']);
   }
+
+  goToUpdate() {
+    this.navController.navigateForward(['./home/update-bet']);
+  }
+
+  goToHistory() {
+    this.navController.navigateForward(['./home/history']);
+  }
 }
