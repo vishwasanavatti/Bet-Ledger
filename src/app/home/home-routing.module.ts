@@ -12,6 +12,10 @@ const routes: Routes = [
     path: 'fixture',
     loadChildren: () => import('./fixture/fixture.module').then( m => m.FixturePageModule)
   },
+  {
+    path: 'update-bet',
+    loadChildren: () => import('./update-bet/update-bet.module').then( m => m.UpdateBetPageModule)
+  },
 ];
 
 @NgModule({
