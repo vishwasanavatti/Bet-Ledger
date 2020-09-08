@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../services/storage.service';
+import { Ledger } from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-fixture',
@@ -12,7 +14,27 @@ export class FixturePage implements OnInit {
   searchValue: string;
   filterItems: any;
 
-  constructor(private navController: NavController, private http: HttpClient) {}
+  // bad coding fix later
+  ratio: number;
+  amt: number;
+
+  constructor(
+    private navController: NavController,
+    private http: HttpClient,
+    private storage: StorageService
+  ) {}
+
+  betData: Ledger = {
+    id: 0,
+    matchNumber: 0,
+    teamFor: '',
+    teamAgainst: '',
+    date: '',
+    ratioType: '',
+    ratioValue: 0,
+    amount: 0,
+    isActive: false,
+  };
 
   ngOnInit() {
     const json = require('../../../assets/fixtures.json');
@@ -60,8 +82,21 @@ export class FixturePage implements OnInit {
     }
   }
 
-  addBet() {
-    alert('hey');
+  addBet(data, i) {
+    this.storage.getNextId().then((key) => {
+      this.betData.id = key;
+    });
+    this.betData.isActive = true;
+    this.betData.date = data.date;
+    this.betData.matchNumber = i + 1;
+    this.betData.ratioValue = this.ratio;
+    this.betData.amount = this.amt;
+    if (this.betData.teamFor === data.team1) {
+      this.betData.teamAgainst = data.team2;
+    } else {
+      this.betData.teamAgainst = data.team1;
+    }
+    this.storage.addBet(this.betData.id.toString(), this.betData);
   }
 
   goBack() {

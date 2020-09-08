@@ -4,35 +4,27 @@
 }
 
 .fixtureStyle {
-  background: white;
+  background: gold;
   border: 1px solid black;
   font-weight: bolder;
   letter-spacing: 4px;
   text-align: center;
+  color: black;
 }
 
 .cardTitle {
-  font-size: 20px;
+  font-size: 15px;
   text-align: center;
-  background: #e2dc4a;
 }
 
 .searchBar {
   background: #131313;
 }
 
-.teamSelection {
-  justify-content: center;
-}
-
 .labelHeader {
   margin-left: 25px;
   font-weight: bolder;
   color: black;
-}
-
-.card-content {
-  padding-bottom: 10px;
 }
 
 .inputStyle {
@@ -43,4 +35,9 @@
 .saveButton {
   margin-top: 40px;
   padding: 0px;
+}
+
+.content-css {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

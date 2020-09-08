@@ -15,11 +15,12 @@
   [(ngModel)]="searchValue"
   (ionInput)="search()"
 ></ion-searchbar>
+
 <ion-content>
-  <ion-card *ngFor="let data of filterItems; let i = index">
-    <ion-card-header class="ion-no-padding" (click)="expand(data)">
+  <ion-card class="content-css" *ngFor="let data of filterItems; let i = index">
+    <ion-card-header class="ion-no-padding fixtureStyle" (click)="expand(data)">
       <ion-card-title class="cardTitle">Match {{i+1}}</ion-card-title>
-      <div class="fixtureStyle">
+      <div class="">
         <ion-col class="col">{{data.team1}}</ion-col>
         <ion-col>vs</ion-col>
         <ion-col class="col">{{data.team2}}</ion-col>
@@ -27,32 +28,32 @@
       </div>
     </ion-card-header>
 
-    <ion-card-content class="ion-no-padding card-content">
-      <app-expandable expandHeight="100px" [expanded]="data.expanded">
+    <ion-card-content class="ion-no-padding">
+      <app-expandable expandHeight="200px" [expanded]="data.expanded">
         <ion-row>
-          <ion-radio-group>
+          <ion-radio-group [(ngModel)]="betData.teamFor">
             <ion-label class="labelHeader">Team</ion-label>
             <ion-item>
               <ion-label>{{data.team1}}</ion-label>
-              <ion-radio slot="end" value="apple"></ion-radio>
+              <ion-radio slot="end" value="{{data.team1}}"></ion-radio>
             </ion-item>
 
             <ion-item>
               <ion-label>{{data.team2}}</ion-label>
-              <ion-radio slot="end" value="grape"></ion-radio>
+              <ion-radio slot="end" value="{{data.team2}}"></ion-radio>
             </ion-item>
           </ion-radio-group>
 
-          <ion-radio-group>
+          <ion-radio-group [(ngModel)]="betData.ratioType">
             <ion-label class="labelHeader">ratio</ion-label>
             <ion-item>
               <ion-label>give</ion-label>
-              <ion-radio slot="end" value="apple"></ion-radio>
+              <ion-radio slot="end" value="give"></ion-radio>
             </ion-item>
 
             <ion-item>
               <ion-label>get</ion-label>
-              <ion-radio slot="end" value="grape"></ion-radio>
+              <ion-radio slot="end" value="get"></ion-radio>
             </ion-item>
           </ion-radio-group>
 
@@ -64,7 +65,12 @@
                 name="trending-up"
                 size="small"
               ></ion-icon>
-              <ion-input class="ion-no-padding" type="text" placeholder="ratio">
+              <ion-input
+                class="ion-no-padding"
+                [(ngModel)]="ratio"
+                type="text"
+                placeholder="ratio"
+              >
               </ion-input>
             </ion-item>
             <ion-item class="ion-no-padding">
@@ -77,13 +83,18 @@
               <ion-input
                 class="ion-no-padding"
                 type="text"
+                [(ngModel)]="amt"
                 placeholder="Amount"
               >
               </ion-input>
             </ion-item>
           </ion-col>
 
-          <ion-button (click)="addBet()" class="saveButton">
+          <ion-button
+            (click)="addBet(data, i)"
+            class="saveButton"
+            [disabled]="!betData.teamFor || !betData.ratioType || !ratio || !amt"
+          >
             <ion-icon name="save"></ion-icon>
           </ion-button>
         </ion-row>
