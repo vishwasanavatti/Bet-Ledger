@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
 import { Ledger } from '../../model/bet-form.model';
+import { ModalController } from '@ionic/angular';
+import { UpdateBetEntryComponent } from './update-bet-entry/update-bet-entry.component';
 
 @Component({
   selector: 'app-update-bet',
@@ -14,7 +16,8 @@ export class UpdateBetPage implements OnInit {
 
   constructor(
     private navController: NavController,
-    private storage: StorageService
+    private storage: StorageService,
+    private modalController: ModalController
   ) {}
 
   ngOnInit() {
@@ -28,9 +31,31 @@ export class UpdateBetPage implements OnInit {
     this.activeBetsSize = this.activeBets.length;
   }
 
-  updateBet(data, i): void {}
+  async updateBet(data: any, i: number) {
+    const modal = await this.modalController.create({
+      component: UpdateBetEntryComponent,
+      cssClass: 'modal-css',
+      componentProps: {
+        updateEntry: data,
+      },
+    });
 
-  deleteBet(i): void {}
+    modal.onDidDismiss().then((val) => {
+      if (val.data && val.data.canSubmitData) {
+        if (data.result && data.result !== '') {
+          data.isActive = false;
+          this.activeBets.splice(i, 1);
+        }
+        this.storage.updateBet(data.id.toString(), data);
+      }
+    });
+    return await modal.present();
+  }
+
+  deleteBet(id: number, i: number): void {
+    this.storage.deleteBet(id.toString());
+    this.activeBets.splice(i, 1);
+  }
 
   goBack() {
     this.navController.navigateRoot('/home');

@@ -1,3 +1,61 @@
-<p>
-  update-bet-entry works!
-</p>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button (click)="cancel()">cancel</ion-button>
+  </ion-buttons>
+  <ion-title>update bet</ion-title>
+  <ion-buttons slot="end">
+    <ion-button (click)="save()">save</ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-list class="list-style">
+    <ion-item class="ion-no-padding entry-item">
+      <ion-icon slot="start" name="trending-up" size="large"></ion-icon>
+      <ion-label class="ion-select-label">ratio</ion-label>
+      <ion-select
+        slot="end"
+        interface="popover"
+        placeholder="{{ updateEntry.ratioType }}"
+        [(ngModel)]="updateEntry.ratioType"
+      >
+        <ion-select-option *ngFor="let val of ratio" [value]="val.value">
+          {{ val.displayName }}</ion-select-option
+        >
+      </ion-select>
+      <ion-input
+        class="ion-no-padding"
+        type="text"
+        [(ngModel)]="updateEntry.ratioValue"
+        placeholder="ratio"
+      >
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="ion-no-padding entry-item">
+      <ion-icon slot="start" name="cash-outline" size="large"></ion-icon>
+      <ion-label class="ion-select-label">Amount</ion-label>
+      <ion-input
+        class="ion-no-padding"
+        type="text"
+        [(ngModel)]="updateEntry.amount"
+        placeholder="amount"
+      >
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="ion-no-padding entry-item">
+      <ion-icon slot="start" name="trophy-outline" size="large"></ion-icon>
+      <ion-label class="ion-select-label">Result</ion-label>
+      <ion-select
+        slot="end"
+        interface="popover"
+        [(ngModel)]="updateEntry.result"
+      >
+        <ion-select-option *ngFor="let val of result" [value]="val.value">
+          {{ val.displayName }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </ion-list>
+</ion-content>
