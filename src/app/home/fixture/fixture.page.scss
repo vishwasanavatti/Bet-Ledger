@@ -25,6 +25,7 @@
   margin-left: 25px;
   font-weight: bolder;
   color: black;
+  align-self: center;
 }
 
 .inputStyle {
@@ -32,12 +33,24 @@
   margin-top: 20px;
 }
 
-.saveButton {
-  margin-top: 40px;
-  padding: 0px;
-}
-
 .content-css {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+
+.value-entry {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.ion-row-css {
+  height: 45px;
+}
+
+.values {
+  display: flex;
+}
+
+.select {
+  padding: 5px;
 }

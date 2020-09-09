@@ -14,7 +14,7 @@
       <ion-col size="8">
         <ion-item class="ion-no-padding entry-item">
           <ion-icon slot="start" name="trending-up" size="medium"></ion-icon>
-          <ion-label class="ion-select-label">ratio</ion-label>
+          <ion-label class="ion-select-label">Ratio</ion-label>
           <ion-select
             slot="end"
             interface="popover"
@@ -41,9 +41,24 @@
     </ion-row>
 
     <ion-row>
+      <ion-col size="8">
+        <ion-item class="ion-no-padding entry-item">
+          <ion-icon slot="start" name="trending-up" size="medium"></ion-icon>
+          <ion-label class="ion-select-label">Amount</ion-label>
+          <ion-select
+            slot="end"
+            interface="popover"
+            placeholder="{{ updateEntry.currency }}"
+            [(ngModel)]="updateEntry.currency"
+          >
+            <ion-select-option *ngFor="let c of currency" [value]="c.value">
+              {{ c.displayName }}</ion-select-option
+            >
+          </ion-select>
+        </ion-item>
+      </ion-col>
       <ion-col>
         <ion-item class="ion-no-padding entry-item">
-          <ion-icon slot="start" name="cash-outline" size="medium"></ion-icon>
           <ion-input
             class="ion-no-padding"
             type="text"

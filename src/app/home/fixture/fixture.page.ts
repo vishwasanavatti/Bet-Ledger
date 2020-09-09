@@ -17,6 +17,22 @@ export class FixturePage implements OnInit {
   // bad coding fix later
   ratio: number;
   amt: number;
+  cur: string;
+
+  currency = [
+    {
+      value: 'INR',
+      displayName: 'INR',
+    },
+    {
+      value: 'USD',
+      displayName: 'USD',
+    },
+    {
+      value: 'EUR',
+      displayName: 'EUR',
+    },
+  ];
 
   constructor(
     private navController: NavController,
@@ -36,6 +52,7 @@ export class FixturePage implements OnInit {
     amount: null,
     isActive: false,
     result: '',
+    currency: '',
   };
 
   ngOnInit() {
@@ -82,6 +99,7 @@ export class FixturePage implements OnInit {
       amount: null,
       isActive: false,
       result: '',
+      currency: '',
     };
     this.ratio = null;
     this.amt = null;
@@ -105,6 +123,7 @@ export class FixturePage implements OnInit {
     this.betData.matchNumber = i + 1;
     this.betData.ratioValue = this.ratio;
     this.betData.amount = this.amt;
+    this.betData.currency = this.cur;
     if (this.betData.teamFor === data.team1) {
       this.betData.teamAgainst = data.team2;
     } else {

@@ -34,6 +34,20 @@ export class UpdateBetEntryComponent {
       displayName: 'No Result',
     },
   ];
+  currency = [
+    {
+      value: 'INR',
+      displayName: 'INR',
+    },
+    {
+      value: 'USD',
+      displayName: 'USD',
+    },
+    {
+      value: 'EUR',
+      displayName: 'EUR',
+    },
+  ];
 
   @Input() updateEntry: Ledger;
 
