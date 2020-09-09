@@ -38,3 +38,8 @@
   position: absolute;
   display: block;
 }
+.custom-alert-button-colors {
+  .color-secondary {
+    color: var(--ion-color-danger);
+  }
+}
