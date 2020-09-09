@@ -9,4 +9,43 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-list
+    *ngFor="
+let data of betRecords"
+    class="list-style"
+  >
+    <ion-item class="bet-entry ion-no-padding">
+      <ion-label>
+        <p class="match-head">
+          Match {{ data.matchNumber }}
+          <span class="match-date">{{data.date}}</span>
+        </p>
+
+        <p class="teams-css">
+          <span [ngClass]="data.result === 'won' ? 'won-css' : 'lost-css'"
+            >{{data.teamFor}}</span
+          >
+          vs {{data.teamAgainst}}
+        </p>
+
+        <p class="values">
+          Amount: {{data.amount}}
+          <span class="ratio"
+            >ratio: {{data.ratioValue}} {{data.ratioType}}</span
+          >
+        </p>
+      </ion-label>
+      <div>
+        <span *ngIf="data.result === 'won'" class="won-css"
+          ><ion-icon name="checkmark-circle-outline"></ion-icon
+        ></span>
+        <span *ngIf="data.result === 'lost'" class="lost-css"
+          ><ion-icon name="close-circle-outline"></ion-icon
+        ></span>
+        <span *ngIf="data.result === 'NR'" class="nr-css"
+          ><ion-icon name="remove-circle-outline"></ion-icon
+        ></span>
+      </div>
+    </ion-item> </ion-list
+></ion-content>

@@ -1,0 +1,44 @@
+.bet-entry > ion-label {
+  padding-left: 1rem;
+}
+
+.list-style {
+  margin: 15px;
+}
+
+.match-head,
+.teams-css,
+.values {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.match-date,
+.ratio {
+  float: right;
+}
+
+.teams-css {
+  text-align: center;
+}
+
+.values {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.won-css {
+  color: green;
+  font-size: 30px;
+}
+
+.lost-css {
+  color: red;
+  font-size: 30px;
+}
+
+.nr-css {
+  color: grey;
+  font-size: 30px;
+}
