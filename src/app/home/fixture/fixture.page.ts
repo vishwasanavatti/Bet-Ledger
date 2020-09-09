@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../../services/storage.service';
 import { Ledger } from '../../model/bet-form.model';
@@ -21,18 +21,19 @@ export class FixturePage implements OnInit {
   constructor(
     private navController: NavController,
     private http: HttpClient,
-    private storage: StorageService
+    private storage: StorageService,
+    private toastController: ToastController
   ) {}
 
   betData: Ledger = {
     id: null,
-    matchNumber: 0,
+    matchNumber: null,
     teamFor: '',
     teamAgainst: '',
     date: '',
     ratioType: '',
-    ratioValue: 0,
-    amount: 0,
+    ratioValue: null,
+    amount: null,
     isActive: false,
     result: '',
   };
@@ -72,13 +73,13 @@ export class FixturePage implements OnInit {
   expand(data: any): void {
     this.betData = {
       id: null,
-      matchNumber: 0,
+      matchNumber: null,
       teamFor: '',
       teamAgainst: '',
       date: '',
       ratioType: '',
-      ratioValue: 0,
-      amount: 0,
+      ratioValue: null,
+      amount: null,
       isActive: false,
       result: '',
     };
@@ -112,7 +113,18 @@ export class FixturePage implements OnInit {
     this.storage.getNextId().then((key) => {
       this.betData.id = key;
       this.storage.addBet(this.betData.id.toString(), this.betData);
+      this.betPlaceAlert();
     });
+  }
+
+  async betPlaceAlert(): Promise<void> {
+    const toast = await this.toastController.create({
+      message: 'bet added successfully',
+      color: 'success',
+      position: 'bottom',
+      duration: 1000,
+    });
+    toast.present();
   }
 
   goBack() {

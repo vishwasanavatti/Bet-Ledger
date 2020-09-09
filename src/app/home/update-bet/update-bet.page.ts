@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
 import { Ledger } from '../../model/bet-form.model';
 import { ModalController } from '@ionic/angular';
@@ -17,7 +17,8 @@ export class UpdateBetPage implements OnInit {
   constructor(
     private navController: NavController,
     private storage: StorageService,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private alertController: AlertController
   ) {}
 
   ngOnInit() {
@@ -55,6 +56,28 @@ export class UpdateBetPage implements OnInit {
   deleteBet(id: number, i: number): void {
     this.storage.deleteBet(id.toString());
     this.activeBets.splice(i, 1);
+  }
+
+  async delete(id: number, i: number): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Delete Bet?',
+      message: 'This will permanently delete from storage.',
+      cssClass: 'custom-alert-button-colors',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+
+        {
+          text: 'Delete',
+          cssClass: 'color-secondary',
+          handler: () => this.deleteBet(id, i),
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
   goBack() {

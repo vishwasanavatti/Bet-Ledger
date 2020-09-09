@@ -99,7 +99,6 @@ export class StorageService {
 
   /**
    * Used to get an item from the storage
-   * @param dbObject The storage object
    * @param key Unique key for the item
    * @returns Promise of forms data object
    */
@@ -117,7 +116,6 @@ export class StorageService {
 
   /**
    * Used to get all items from the storage
-   * @param dbObject The storage object
    * @returns Promise of array of forms data object
    */
   async getAllBets<T>(): Promise<Array<T>> {
@@ -139,7 +137,6 @@ export class StorageService {
 
   /**
    * Used to delete an item from the storage
-   * @param dbObject The storage object
    * @param key Unique key for the item
    * @returns Promise of void
    */
@@ -161,7 +158,6 @@ export class StorageService {
 
   /**
    * Used to delete all items in the storage
-   * @param dbObject The storage object
    * @returns Promise of void
    */
   async deleteAllBets(): Promise<void> {
@@ -172,7 +168,6 @@ export class StorageService {
 
   /**
    * Used to update an existing item in the storage
-   * @param dbObject The storage object
    * @param key Unique key for the item
    * @param value Conatains value to update
    * @returns Promise of forms data object
