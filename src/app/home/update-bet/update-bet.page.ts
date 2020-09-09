@@ -48,6 +48,8 @@ export class UpdateBetPage implements OnInit {
           this.activeBets.splice(i, 1);
         }
         this.storage.updateBet(data.id.toString(), data);
+      } else {
+        window.location.reload();
       }
     });
     return await modal.present();

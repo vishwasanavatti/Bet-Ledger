@@ -12,38 +12,50 @@
 <ion-content>
   <ion-list class="list-style">
     <!-- Sliding item with bet information -->
-    <ion-item-sliding
-      *ngFor="
+    <span *ngIf="activeBetsSize && activeBetsSize > 0">
+      <ion-item-sliding
+        *ngFor="
       let data of activeBets;
       let i = index
     "
-    >
-      <ion-item (click)="updateBet(data, i)" class="bet-entry ion-no-padding">
-        <ion-label>
-          <p class="match-head">
-            Match {{ data.matchNumber }}
-            <span class="match-date">{{data.date}}</span>
-          </p>
+      >
+        <ion-item (click)="updateBet(data, i)" class="bet-entry ion-no-padding">
+          <ion-label>
+            <p class="match-head">
+              Match {{ data.matchNumber }}
+              <span class="match-date">{{data.date}}</span>
+            </p>
 
-          <p class="teams-css">
-            <span class="teamFor">{{data.teamFor}}</span> vs
-            {{data.teamAgainst}}
-          </p>
+            <p class="teams-css">
+              <span class="teamFor">{{data.teamFor}}</span> vs
+              {{data.teamAgainst}}
+            </p>
 
-          <p class="values">
-            Amount: {{data.amount}}
-            <span class="ratio"
-              >ratio: {{data.ratioValue}} {{data.ratioType}}</span
-            >
-          </p>
-        </ion-label>
-      </ion-item>
+            <p class="values">
+              Amount: {{data.amount}}
+              <span class="ratio"
+                >ratio: {{data.ratioValue}} {{data.ratioType}}</span
+              >
+            </p>
+          </ion-label>
+        </ion-item>
 
-      <ion-item-options side="end">
-        <ion-item-option color="danger" expandable (click)="delete(data.id, i)">
-          <ion-icon name="trash" size="large"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+        <ion-item-options side="end">
+          <ion-item-option
+            color="danger"
+            expandable
+            (click)="delete(data.id, i)"
+          >
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </span>
+
+    <span *ngIf="activeBetsSize < 0 || activeBetsSize === 0">
+      <div class="content">
+        <div>No active Bets</div>
+      </div>
+    </span>
   </ion-list>
 </ion-content>
