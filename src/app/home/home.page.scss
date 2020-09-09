@@ -13,25 +13,6 @@ ion-header ion-toolbar {
   color: var(--ion-color-light-shade);
 }
 
-.notification-button {
-  position: relative;
-}
-
-.notifications-badge {
-  background: var(--ion-color-danger);
-  color: var(--ion-color-secondary-contrast);
-  position: absolute;
-  top: -3px;
-  right: -5px;
-  border-radius: 1000px;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 30px;
-  min-width: 30px;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
 .container {
   min-height: 50%;
   background: #131313;
@@ -65,7 +46,7 @@ ion-header ion-toolbar {
 }
 
 .competitionName {
-  color: white;
+  color: var(--ion-color-light);
   top: 200px;
   left: 150px;
   font-size: 24px;

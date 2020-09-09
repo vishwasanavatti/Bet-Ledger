@@ -1,11 +1,8 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="end" class="toolbar-buttons">
-      <button class="notification-button">
+      <button class="notification-button" (click)="openStats()">
         <ion-icon name="stats-chart-outline"></ion-icon>
-        <span class="notifications-badge" *ngIf="activeBets"
-          >{{this.activeBets}}</span
-        >
       </button>
     </ion-buttons>
   </ion-toolbar>

@@ -20,4 +20,8 @@ export class HomePage {
   goToHistory() {
     this.navController.navigateForward(['./home/history']);
   }
+
+  openStats() {
+    this.navController.navigateForward(['./home/stats']);
+  }
 }

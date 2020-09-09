@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'history',
     loadChildren: () => import('./history/history.module').then( m => m.HistoryPageModule)
   },
+  {
+    path: 'stats',
+    loadChildren: () => import('./stats/stats.module').then( m => m.StatsPageModule)
+  },
 ];
 
 @NgModule({
