@@ -23,27 +23,31 @@ let data of betRecords"
         </p>
 
         <p class="teams-css">
-          <span [ngClass]="data.result === 1? 'won-css' : 'lost-css'"
+          <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
             >{{data.teamFor}}</span
           >
           vs {{data.teamAgainst}}
         </p>
 
         <p class="values">
-          Amount: {{data.resultAmt}} {{data.currency}}
+          Amount:
+          <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
+            >{{data.resultAmt}}</span
+          >
+          {{data.currency}}
           <span class="ratio"
             >ratio: {{data.ratioValue}} {{data.ratioType}}</span
           >
         </p>
       </ion-label>
       <div>
-        <span *ngIf="data.result === 1" class="won-css"
+        <span *ngIf="data.result === 'won'" class="won-css result-icon"
           ><ion-icon name="checkmark-circle-outline"></ion-icon
         ></span>
-        <span *ngIf="data.result === 2" class="lost-css"
+        <span *ngIf="data.result === 'lost'" class="lost-css result-icon"
           ><ion-icon name="close-circle-outline"></ion-icon
         ></span>
-        <span *ngIf="data.result === 3" class="nr-css"
+        <span *ngIf="data.result === 'nr'" class="nr-css result-icon"
           ><ion-icon name="remove-circle-outline"></ion-icon
         ></span>
       </div>
