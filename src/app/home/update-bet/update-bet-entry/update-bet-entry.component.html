@@ -4,7 +4,15 @@
   </ion-buttons>
   <ion-title>update bet</ion-title>
   <ion-buttons slot="end">
-    <ion-button (click)="update()">save</ion-button>
+    <span
+      *ngIf="updateEntry.result && updateEntry.result !== null"
+      class="won-css"
+    >
+      <ion-button (click)="update()">save</ion-button>
+    </span>
+    <span *ngIf="!updateEntry.result" class="won-css">
+      <ion-button (click)="save()">save</ion-button>
+    </span>
   </ion-buttons>
 </ion-toolbar>
 
@@ -20,6 +28,7 @@
             interface="popover"
             placeholder="{{ updateEntry.ratioType }}"
             [(ngModel)]="updateEntry.ratioType"
+            (ionChange)="amoutUpdate()"
           >
             <ion-select-option *ngFor="let val of ratio" [value]="val.value">
               {{ val.displayName }}</ion-select-option

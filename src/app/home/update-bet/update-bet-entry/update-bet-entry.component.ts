@@ -15,39 +15,39 @@ export class UpdateBetEntryComponent {
 
   ratio = [
     {
-      value: 'give',
+      value: 1,
       displayName: 'give',
     },
     {
-      value: 'get',
+      value: 2,
       displayName: 'get',
     },
   ];
   result = [
     {
-      value: 'won',
+      value: 1,
       displayName: 'won',
     },
     {
-      value: 'lost',
+      value: 2,
       displayName: 'lost',
     },
     {
-      value: 'NR',
+      value: 3,
       displayName: 'No Result',
     },
   ];
   currency = [
     {
-      value: 'INR',
+      value: 1,
       displayName: 'INR',
     },
     {
-      value: 'USD',
+      value: 2,
       displayName: 'USD',
     },
     {
-      value: 'EUR',
+      value: 3,
       displayName: 'EUR',
     },
   ];
@@ -88,7 +88,22 @@ export class UpdateBetEntryComponent {
   }
 
   amoutUpdate(): void {
-    this.updateEntry.resultAmt =
-      this.updateEntry.amount * this.updateEntry.ratioValue;
+    if (this.updateEntry.result && this.updateEntry.result !== null) {
+      if (this.updateEntry.result === 3) {
+        this.updateEntry.resultAmt = 0;
+      } else {
+        if (
+          (this.updateEntry.ratioType &&
+            this.updateEntry.ratioType === 1 &&
+            this.updateEntry.result === 1) ||
+          (this.updateEntry.ratioType === 2 && this.updateEntry.result === 2)
+        ) {
+          this.updateEntry.resultAmt = this.updateEntry.amount;
+        } else {
+          this.updateEntry.resultAmt =
+            this.updateEntry.amount * this.updateEntry.ratioValue;
+        }
+      }
+    }
   }
 }

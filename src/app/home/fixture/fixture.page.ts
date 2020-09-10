@@ -20,26 +20,26 @@ export class FixturePage implements OnInit {
 
   currency = [
     {
-      value: 'INR',
+      value: 1,
       displayName: 'INR',
     },
     {
-      value: 'USD',
+      value: 2,
       displayName: 'USD',
     },
     {
-      value: 'EUR',
+      value: 3,
       displayName: 'EUR',
     },
   ];
 
   ratio = [
     {
-      value: 'give',
+      value: 1,
       displayName: 'give',
     },
     {
-      value: 'get',
+      value: 2,
       displayName: 'get',
     },
   ];
@@ -57,12 +57,12 @@ export class FixturePage implements OnInit {
     teamFor: '',
     teamAgainst: '',
     date: '',
-    ratioType: '',
+    ratioType: null,
     ratioValue: null,
     amount: null,
     isActive: false,
-    result: '',
-    currency: '',
+    result: null,
+    currency: null,
     resultAmt: null,
   };
 
@@ -105,12 +105,12 @@ export class FixturePage implements OnInit {
       teamFor: '',
       teamAgainst: '',
       date: '',
-      ratioType: '',
+      ratioType: null,
       ratioValue: null,
       amount: null,
       isActive: false,
-      result: '',
-      currency: '',
+      result: null,
+      currency: null,
       resultAmt: null,
     };
     this.rat = null;

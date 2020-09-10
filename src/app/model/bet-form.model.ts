@@ -4,12 +4,12 @@ export interface Ledger {
   teamFor: string;
   teamAgainst: string;
   date: string;
-  ratioType: string;
+  ratioType: number;
   ratioValue: number;
   amount: number;
   isActive: boolean;
-  result: string;
-  currency: string;
+  result: number;
+  currency: number;
   resultAmt: number;
 }
 
