@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { Ledger } from '../../../model/bet-form.model';
 
 @Component({
@@ -8,7 +8,10 @@ import { Ledger } from '../../../model/bet-form.model';
   styleUrls: ['./update-bet-entry.component.scss'],
 })
 export class UpdateBetEntryComponent {
-  constructor(private modalController: ModalController) {}
+  constructor(
+    private modalController: ModalController,
+    private alertController: AlertController
+  ) {}
 
   ratio = [
     {
@@ -61,5 +64,31 @@ export class UpdateBetEntryComponent {
     this.modalController.dismiss({
       canSubmitData: true,
     });
+  }
+
+  async update(): Promise<void> {
+    const alert = await this.alertController.create({
+      header: 'Save?',
+      message: 'The data will be saved and cannot be modified later.',
+      cssClass: 'custom-alert-button-colors',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+
+        {
+          text: 'Save',
+          cssClass: 'color-secondary',
+          handler: () => this.save(),
+        },
+      ],
+    });
+    await alert.present();
+  }
+
+  amoutUpdate(): void {
+    this.updateEntry.resultAmt =
+      this.updateEntry.amount * this.updateEntry.ratioValue;
   }
 }

@@ -52,46 +52,35 @@
           </ion-radio-group>
         </ion-row>
 
-        <ion-row class="ion-row-css">
-          <ion-radio-group [(ngModel)]="betData.ratioType">
-            <ion-grid class="ion-no-padding">
-              <ion-row class="ion-row-css">
-                <ion-label class="labelHeader">Ratio</ion-label>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>give</ion-label>
-                    <ion-radio value="give"></ion-radio>
-                  </ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>get</ion-label>
-                    <ion-radio value="get"></ion-radio>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-radio-group>
-        </ion-row>
         <div class="values">
           <div>
-            <ion-item class="value-entry">
+            <ion-item class="value-entry ion-no-padding">
               <ion-icon
                 class="ion-no-padding"
                 slot="start"
                 name="trending-up"
                 size="medium"
               ></ion-icon>
+              <ion-select
+                slot="end"
+                interface="popover"
+                [(ngModel)]="betData.ratioType"
+                class="ion-no-padding select"
+              >
+                <ion-select-option *ngFor="let r of ratio" [value]="r.value">
+                  {{ r.displayName }}</ion-select-option
+                >
+              </ion-select>
               <ion-input
                 class="ion-no-padding"
-                [(ngModel)]="ratio"
-                type="text"
+                [(ngModel)]="rat"
+                type="number"
                 placeholder="ratio"
               >
               </ion-input>
             </ion-item>
 
-            <ion-item class="value-entry">
+            <ion-item class="value-entry ion-no-padding">
               <ion-icon
                 class="ion-no-padding"
                 slot="start"
@@ -101,7 +90,7 @@
               <ion-select
                 slot="end"
                 interface="popover"
-                [(ngModel)]="cur"
+                [(ngModel)]="betData.currency"
                 class="ion-no-padding select"
               >
                 <ion-select-option *ngFor="let c of currency" [value]="c.value">
@@ -110,7 +99,7 @@
               </ion-select>
               <ion-input
                 class="ion-no-padding"
-                type="text"
+                type="number"
                 [(ngModel)]="amt"
                 placeholder="Amount"
               >
@@ -118,12 +107,14 @@
             </ion-item>
           </div>
 
-          <ion-button
-            (click)="addBet(data, i)"
-            [disabled]="!betData.teamFor || !betData.ratioType || !ratio || !amt || !cur"
-          >
-            <ion-icon name="save"></ion-icon>
-          </ion-button>
+          <div class="save-button">
+            <ion-button
+              (click)="addBet(data, i)"
+              [disabled]="!betData.teamFor || !rat || !amt || !betData.currency"
+            >
+              <ion-icon name="save"></ion-icon>
+            </ion-button>
+          </div>
         </div>
       </app-expandable>
     </ion-card-content>

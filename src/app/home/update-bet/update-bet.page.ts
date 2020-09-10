@@ -43,7 +43,12 @@ export class UpdateBetPage implements OnInit {
 
     modal.onDidDismiss().then((val) => {
       if (val.data && val.data.canSubmitData) {
-        if (data.result && data.result !== '') {
+        if (
+          data.result &&
+          data.result !== '' &&
+          data.resultAmt &&
+          data.resultAmt !== ''
+        ) {
           data.isActive = false;
           this.activeBets.splice(i, 1);
         }

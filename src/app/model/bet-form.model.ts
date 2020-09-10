@@ -10,6 +10,7 @@ export interface Ledger {
   isActive: boolean;
   result: string;
   currency: string;
+  resultAmt: number;
 }
 
 export interface Stats {

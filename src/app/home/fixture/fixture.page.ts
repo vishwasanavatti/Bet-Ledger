@@ -15,9 +15,8 @@ export class FixturePage implements OnInit {
   filterItems: any;
 
   // bad coding fix later
-  ratio: number;
+  rat: number;
   amt: number;
-  cur: string;
 
   currency = [
     {
@@ -31,6 +30,17 @@ export class FixturePage implements OnInit {
     {
       value: 'EUR',
       displayName: 'EUR',
+    },
+  ];
+
+  ratio = [
+    {
+      value: 'give',
+      displayName: 'give',
+    },
+    {
+      value: 'get',
+      displayName: 'get',
     },
   ];
 
@@ -53,6 +63,7 @@ export class FixturePage implements OnInit {
     isActive: false,
     result: '',
     currency: '',
+    resultAmt: null,
   };
 
   ngOnInit() {
@@ -100,8 +111,9 @@ export class FixturePage implements OnInit {
       isActive: false,
       result: '',
       currency: '',
+      resultAmt: null,
     };
-    this.ratio = null;
+    this.rat = null;
     this.amt = null;
 
     if (data.expanded) {
@@ -121,9 +133,8 @@ export class FixturePage implements OnInit {
     this.betData.isActive = true;
     this.betData.date = data.date;
     this.betData.matchNumber = i + 1;
-    this.betData.ratioValue = this.ratio;
+    this.betData.ratioValue = this.rat;
     this.betData.amount = this.amt;
-    this.betData.currency = this.cur;
     if (this.betData.teamFor === data.team1) {
       this.betData.teamAgainst = data.team2;
     } else {

@@ -40,7 +40,7 @@
 
 .value-entry {
   padding-left: 20px;
-  padding-right: 20px;
+  padding-right: 10px;
 }
 
 .ion-row-css {
@@ -51,6 +51,11 @@
   display: flex;
 }
 
-.select {
+.select,
+.save-button {
   padding: 5px;
+}
+
+.save-button {
+  align-self: center;
 }
