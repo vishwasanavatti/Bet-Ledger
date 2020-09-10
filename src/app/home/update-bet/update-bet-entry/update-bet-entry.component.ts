@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
-import { Ledger } from '../../../model/bet-form.model';
+import { Ledger, ratio, currency, result } from '../../../model/bet-form.model';
 
 @Component({
   selector: 'app-update-bet-entry',
@@ -11,46 +11,15 @@ export class UpdateBetEntryComponent {
   constructor(
     private modalController: ModalController,
     private alertController: AlertController
-  ) {}
+  ) {
+    this.ratType = ratio;
+    this.currencies = currency;
+    this.results = result;
+  }
 
-  ratio = [
-    {
-      value: 1,
-      displayName: 'give',
-    },
-    {
-      value: 2,
-      displayName: 'get',
-    },
-  ];
-  result = [
-    {
-      value: 1,
-      displayName: 'won',
-    },
-    {
-      value: 2,
-      displayName: 'lost',
-    },
-    {
-      value: 3,
-      displayName: 'No Result',
-    },
-  ];
-  currency = [
-    {
-      value: 1,
-      displayName: 'INR',
-    },
-    {
-      value: 2,
-      displayName: 'USD',
-    },
-    {
-      value: 3,
-      displayName: 'EUR',
-    },
-  ];
+  ratType: any;
+  currencies: any;
+  results: any;
 
   @Input() updateEntry: Ledger;
 
@@ -89,14 +58,15 @@ export class UpdateBetEntryComponent {
 
   amoutUpdate(): void {
     if (this.updateEntry.result && this.updateEntry.result !== null) {
-      if (this.updateEntry.result === 3) {
+      if (this.updateEntry.result === 'nr') {
         this.updateEntry.resultAmt = 0;
       } else {
         if (
           (this.updateEntry.ratioType &&
-            this.updateEntry.ratioType === 1 &&
-            this.updateEntry.result === 1) ||
-          (this.updateEntry.ratioType === 2 && this.updateEntry.result === 2)
+            this.updateEntry.ratioType === 'give' &&
+            this.updateEntry.result === 'won') ||
+          (this.updateEntry.ratioType === 'get' &&
+            this.updateEntry.result === 'lost')
         ) {
           this.updateEntry.resultAmt = this.updateEntry.amount;
         } else {

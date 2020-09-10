@@ -4,12 +4,12 @@ export interface Ledger {
   teamFor: string;
   teamAgainst: string;
   date: string;
-  ratioType: number;
+  ratioType: string;
   ratioValue: number;
   amount: number;
   isActive: boolean;
-  result: number;
-  currency: number;
+  result: string;
+  currency: string;
   resultAmt: number;
 }
 
@@ -22,3 +22,44 @@ export interface Stats {
   lossTotal: number;
   totalAmountPlayed: number;
 }
+
+export const currency = [
+  {
+    value: 'INR',
+    displayName: 'INR',
+  },
+  {
+    value: 'USD',
+    displayName: 'USD',
+  },
+  {
+    value: 'EUR',
+    displayName: 'EUR',
+  },
+];
+
+export const ratio = [
+  {
+    value: 'give',
+    displayName: 'Give',
+  },
+  {
+    value: 'get',
+    displayName: 'Get',
+  },
+];
+
+export const result = [
+  {
+    value: 'won',
+    displayName: 'Won',
+  },
+  {
+    value: 'lost',
+    displayName: 'Lost',
+  },
+  {
+    value: 'nr',
+    displayName: 'No Result',
+  },
+];

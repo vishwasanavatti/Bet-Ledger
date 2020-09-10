@@ -24,7 +24,7 @@ export class HistoryPage implements OnInit {
 
   betList(inp: Array<Ledger>): void {
     this.betRecords = inp.filter(
-      (x) => x.isActive === false && x.result && x.result !== null
+      (x) => x.isActive === false && x.result && x.result !== ''
     );
   }
 

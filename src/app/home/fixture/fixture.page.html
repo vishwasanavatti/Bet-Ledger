@@ -67,7 +67,7 @@
                 [(ngModel)]="betData.ratioType"
                 class="ion-no-padding select"
               >
-                <ion-select-option *ngFor="let r of ratio" [value]="r.value">
+                <ion-select-option *ngFor="let r of ratType" [value]="r.value">
                   {{ r.displayName }}</ion-select-option
                 >
               </ion-select>
@@ -93,7 +93,10 @@
                 [(ngModel)]="betData.currency"
                 class="ion-no-padding select"
               >
-                <ion-select-option *ngFor="let c of currency" [value]="c.value">
+                <ion-select-option
+                  *ngFor="let c of currencies"
+                  [value]="c.value"
+                >
                   {{ c.displayName }}</ion-select-option
                 >
               </ion-select>

@@ -30,7 +30,7 @@
             [(ngModel)]="updateEntry.ratioType"
             (ionChange)="amoutUpdate()"
           >
-            <ion-select-option *ngFor="let val of ratio" [value]="val.value">
+            <ion-select-option *ngFor="let val of ratType" [value]="val.value">
               {{ val.displayName }}</ion-select-option
             >
           </ion-select>
@@ -60,7 +60,7 @@
             placeholder="{{ updateEntry.currency }}"
             [(ngModel)]="updateEntry.currency"
           >
-            <ion-select-option *ngFor="let c of currency" [value]="c.value">
+            <ion-select-option *ngFor="let c of currencies" [value]="c.value">
               {{ c.displayName }}</ion-select-option
             >
           </ion-select>
@@ -90,7 +90,7 @@
             [(ngModel)]="updateEntry.result"
             (ionChange)="amoutUpdate()"
           >
-            <ion-select-option *ngFor="let val of result" [value]="val.value">
+            <ion-select-option *ngFor="let val of results" [value]="val.value">
               {{ val.displayName }}</ion-select-option
             >
           </ion-select>

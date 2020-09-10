@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../../services/storage.service';
-import { Ledger } from '../../model/bet-form.model';
+import { Ledger, currency, ratio } from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-fixture',
@@ -17,39 +17,18 @@ export class FixturePage implements OnInit {
   // bad coding fix later
   rat: number;
   amt: number;
-
-  currency = [
-    {
-      value: 1,
-      displayName: 'INR',
-    },
-    {
-      value: 2,
-      displayName: 'USD',
-    },
-    {
-      value: 3,
-      displayName: 'EUR',
-    },
-  ];
-
-  ratio = [
-    {
-      value: 1,
-      displayName: 'give',
-    },
-    {
-      value: 2,
-      displayName: 'get',
-    },
-  ];
+  currencies: any;
+  ratType: any;
 
   constructor(
     private navController: NavController,
     private http: HttpClient,
     private storage: StorageService,
     private toastController: ToastController
-  ) {}
+  ) {
+    this.currencies = currency;
+    this.ratType = ratio;
+  }
 
   betData: Ledger = {
     id: null,
@@ -57,12 +36,12 @@ export class FixturePage implements OnInit {
     teamFor: '',
     teamAgainst: '',
     date: '',
-    ratioType: null,
+    ratioType: '',
     ratioValue: null,
     amount: null,
     isActive: false,
-    result: null,
-    currency: null,
+    result: '',
+    currency: '',
     resultAmt: null,
   };
 
@@ -105,12 +84,12 @@ export class FixturePage implements OnInit {
       teamFor: '',
       teamAgainst: '',
       date: '',
-      ratioType: null,
+      ratioType: '',
       ratioValue: null,
       amount: null,
       isActive: false,
-      result: null,
-      currency: null,
+      result: '',
+      currency: '',
       resultAmt: null,
     };
     this.rat = null;
