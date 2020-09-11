@@ -26,7 +26,7 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 .searchbar-input {
-  background: white !important;
+  background: var(--ion-color-light) !important;
   border-radius: 30px !important;
   font-size: 1.25em !important;
   border: 2px solid transparent;

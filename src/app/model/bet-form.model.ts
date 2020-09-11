@@ -13,16 +13,6 @@ export interface Ledger {
   resultAmt: number;
 }
 
-export interface Stats {
-  favouriteTeam: string;
-  biggestWin: number;
-  biggestLoss: number;
-  totalMatches: number;
-  winTotal: number;
-  lossTotal: number;
-  totalAmountPlayed: number;
-}
-
 export const currency = [
   {
     value: 'INR',

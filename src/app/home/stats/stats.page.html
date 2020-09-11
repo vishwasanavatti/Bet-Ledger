@@ -9,4 +9,123 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <div class="currency-filter">
+    <ion-item>
+      <ion-label class="ion-no-padding stat-text">Currency</ion-label>
+      <ion-select
+        slot="end"
+        interface="popover"
+        placeholder="EUR"
+        (ionChange)="currencyValUpdate()"
+      >
+        <ion-select-option *ngFor="let val of currencies" [value]="val.value">
+          {{ val.displayName }}</ion-select-option
+        >
+      </ion-select>
+    </ion-item>
+  </div>
+
+  <ion-list>
+    <ion-item color="secondary">
+      <ion-col size="8" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text">Total Bets</ion-label>
+      </ion-col>
+      <ion-col size="4" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value">{{totalBets}}</ion-label>
+      </ion-col>
+    </ion-item>
+    <ion-item color="tertiary">
+      <ion-col size="8" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text">Total Amount</ion-label>
+      </ion-col>
+      <ion-col size="4" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{totalAmountPlayed}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+    <ion-item color="success">
+      <ion-col size="8" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text"
+          >Total Won (mtchs/amt)</ion-label
+        >
+      </ion-col>
+      <ion-col size="4" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{wonMatches}}/{{winTotal}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+    <ion-item color="danger">
+      <ion-col size="8" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text"
+          >Total Lost (mtchs/amt)</ion-label
+        >
+      </ion-col>
+      <ion-col size="4" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{lostMatches}}/{{lossTotal}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+
+    <ion-item color="secondary">
+      <ion-col size="8" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text">Profit/Loss</ion-label>
+      </ion-col>
+      <ion-col size="4" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{winTotal-lossTotal}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+
+    <ion-item color="primary">
+      <ion-col size="7" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text">Biggest Win</ion-label>
+      </ion-col>
+      <ion-col size="5" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{biggestWinTeam}}: {{biggestWin}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+    <ion-item color="primary">
+      <ion-col size="7" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text">Biggest Loss</ion-label>
+      </ion-col>
+      <ion-col size="5" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{biggestLossTeam}}: {{biggestLoss}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+
+    <ion-item color="success">
+      <ion-col size="7" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text"
+          >Most Profitable Team</ion-label
+        >
+      </ion-col>
+      <ion-col size="5" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{favouriteTeam}}: {{favouriteTeamTotal}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+
+    <ion-item color="danger">
+      <ion-col size="7" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-text"
+          >Least Profitable Team</ion-label
+        >
+      </ion-col>
+      <ion-col size="5" class="ion-no-padding">
+        <ion-label class="ion-no-padding stat-value"
+          >{{worstTeam}}: {{worstTeamTotal}}</ion-label
+        >
+      </ion-col>
+    </ion-item>
+  </ion-list>
+</ion-content>
