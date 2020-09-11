@@ -49,16 +49,22 @@ export class FixturePage implements OnInit {
     const json = require('../../../assets/fixtures.json');
     this.fixtures = json.fixtures;
     this.filterItems = this.fixtures;
-    /*this.http
+    this.http
       .get(
         'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
       )
       .subscribe((response) => {
-        console.log(response);
-      });*/
+        // this.setFixture(response);
+      });
   }
 
-  search() {
+  setFixture(data: any): void {
+    this.fixtures = data.matches.filter((x) => x.type === 'Twenty20');
+    console.log(this.fixtures);
+    // this.filterItems = this.fixtures;
+  }
+
+  search(): void {
     if (this.searchValue && this.searchValue.trim() !== ' ') {
       this.filterItems = this.fixtures.filter(
         (item) =>
