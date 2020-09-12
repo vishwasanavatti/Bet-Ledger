@@ -8,9 +8,11 @@ ion-header ion-toolbar {
   background: transparent;
   outline: none;
 }
-.toolbar-buttons button ion-icon {
-  font-size: 50px;
-  color: var(--ion-color-light-shade);
+
+@media (prefers-color-scheme: dark) {
+  .toolbar-buttons button ion-icon {
+    color: var(--ion-color-dark);
+  }
 }
 
 .container {
@@ -46,7 +48,7 @@ ion-header ion-toolbar {
 }
 
 .competitionName {
-  color: var(--ion-color-light);
+  color: var(--ion-color-medium);
   top: 200px;
   left: 150px;
   font-size: 24px;

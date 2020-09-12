@@ -78,7 +78,6 @@
   /*Buttons*/
   .control-button {
     font-size: 24px;
-    color: var(--ion-color-light-contrast);
     padding: 1rem;
     background: gold;
     border-radius: 30px;
@@ -258,5 +257,20 @@
     --ion-tab-bar-background: #1f1f1f;
 
     --ion-card-background: #1e1e1e;
+  }
+
+  .control-button {
+    color: var(--ion-color-light);
+  }
+  ion-title {
+    color: var(--ion-color-primary) !important;
+  }
+  ion-card-title,
+  ion-label {
+    color: var(--ion-color-light);
+  }
+
+  ion-card-content {
+    background: black;
   }
 }

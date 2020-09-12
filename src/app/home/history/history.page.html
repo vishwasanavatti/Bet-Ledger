@@ -25,12 +25,12 @@ let data of betRecords"
 
           <p class="teams-css">
             <span
-              [ngClass]="teamMap[data.team1] === data.chosenTeam && data.result === 'won'? 'won-css' : 'lost-css'"
+              [ngClass]="teamMap[data.team1] === data.chosenTeam ? 'chosen-team' : ''"
               >{{data.team1}}</span
             >
             vs
             <span
-              [ngClass]="teamMap[data.team2] === data.chosenTeam && data.result === 'won'? 'won-css' : 'lost-css'"
+              [ngClass]="teamMap[data.team2] === data.chosenTeam ? 'chosen-team' : ''"
               >{{data.team2}}</span
             >
           </p>
@@ -40,7 +40,7 @@ let data of betRecords"
             <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
               >{{data.resultAmt}}</span
             >
-            {{data.currency}}
+            EUR
             <span class="ratio"
               >ratio: {{data.ratioValue}} {{data.ratioType}}</span
             >
