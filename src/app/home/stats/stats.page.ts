@@ -45,7 +45,7 @@ export class StatsPage implements OnInit {
     this.wonMatches = wonBets.length;
     this.lostMatches = lostBets.length;
     let teamList: Set<string>;
-    teamList = new Set(finalizedBets.map((x) => x.teamFor));
+    teamList = new Set(finalizedBets.map((x) => x.chosenTeam));
     let teamTotals: Array<number> = [];
 
     this.totalBets = finalizedBets.length;
@@ -62,7 +62,7 @@ export class StatsPage implements OnInit {
     for (const team of teamList) {
       teamTotals.push(
         wonBets
-          .filter((x) => x.teamFor === team)
+          .filter((x) => x.chosenTeam === team)
           .map((x) => x.resultAmt)
           .reduce((a, b) => a + b, 0)
       );
@@ -77,7 +77,7 @@ export class StatsPage implements OnInit {
     for (const team of teamList) {
       teamTotals.push(
         lostBets
-          .filter((x) => x.teamFor === team)
+          .filter((x) => x.chosenTeam === team)
           .map((x) => x.resultAmt)
           .reduce((a, b) => a + b, 0)
       );
@@ -100,11 +100,11 @@ export class StatsPage implements OnInit {
     for (const team of teamList) {
       teamTotals.push(
         wonBets
-          .filter((x) => x.teamFor === team)
+          .filter((x) => x.chosenTeam === team)
           .map((x) => x.resultAmt)
           .reduce((a, b) => a + b, 0) -
           lostBets
-            .filter((x) => x.teamFor === team)
+            .filter((x) => x.chosenTeam === team)
             .map((x) => x.resultAmt)
             .reduce((a, b) => a + b, 0)
       );

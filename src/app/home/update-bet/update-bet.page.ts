@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { Ledger } from '../../model/bet-form.model';
+import { Ledger, teamsMap } from '../../model/bet-form.model';
 import { ModalController } from '@ionic/angular';
 import { UpdateBetEntryComponent } from './update-bet-entry/update-bet-entry.component';
 
@@ -13,13 +13,16 @@ import { UpdateBetEntryComponent } from './update-bet-entry/update-bet-entry.com
 export class UpdateBetPage implements OnInit {
   activeBets: Ledger[];
   activeBetsSize: number;
+  teamMap: any;
 
   constructor(
     private navController: NavController,
     private storage: StorageService,
     private modalController: ModalController,
     private alertController: AlertController
-  ) {}
+  ) {
+    this.teamMap = teamsMap;
+  }
 
   ngOnInit() {
     this.storage.getAllBets<Ledger>().then((data) => {
@@ -43,12 +46,7 @@ export class UpdateBetPage implements OnInit {
 
     modal.onDidDismiss().then((val) => {
       if (val.data && val.data.canSubmitData) {
-        if (
-          data.result &&
-          data.result !== '' &&
-          data.resultAmt &&
-          data.resultAmt !== ''
-        ) {
+        if (data.result && data.result !== '' && data.resultAmt !== '') {
           data.isActive = false;
           this.activeBets.splice(i, 1);
         }

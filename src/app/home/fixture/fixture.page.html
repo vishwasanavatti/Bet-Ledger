@@ -19,32 +19,34 @@
 <ion-content>
   <ion-card class="content-css" *ngFor="let data of filterItems; let i = index">
     <ion-card-header class="ion-no-padding fixtureStyle" (click)="expand(data)">
-      <ion-card-title class="cardTitle">Match {{i+1}}</ion-card-title>
-      <div class="">
-        <ion-col class="col">{{data.team1}}</ion-col>
-        <ion-col>vs</ion-col>
-        <ion-col class="col">{{data.team2}}</ion-col>
-        <ion-row><ion-col class="date">{{data.date}}</ion-col></ion-row>
+      <ion-card-title class="cardTitle"
+        >Match {{i+1}}
+        <ion-label class="date">{{getDate(data)}}</ion-label></ion-card-title
+      >
+      <div class="team-style">
+        <ion-label>{{data['team-1']}}</ion-label>
+        <ion-label>vs</ion-label>
+        <ion-label>{{data['team-2']}}</ion-label>
       </div>
     </ion-card-header>
 
     <ion-card-content>
       <app-expandable expandHeight="200px" [expanded]="data.expanded">
         <ion-row class="ion-row-css">
-          <ion-radio-group [(ngModel)]="betData.teamFor">
+          <ion-radio-group [(ngModel)]="betData.chosenTeam">
             <ion-grid class="ion-no-padding">
               <ion-row class="ion-row-css">
                 <ion-label class="labelHeader">Team</ion-label>
                 <ion-col>
                   <ion-item>
-                    <ion-label>{{data.team1}}</ion-label>
-                    <ion-radio value="{{data.team1}}"></ion-radio>
+                    <ion-label>{{teamMap[data['team-1']]}}</ion-label>
+                    <ion-radio value="{{teamMap[data['team-1']]}}"></ion-radio>
                   </ion-item>
                 </ion-col>
                 <ion-col>
                   <ion-item>
-                    <ion-label>{{data.team2}}</ion-label>
-                    <ion-radio value="{{data.team2}}"></ion-radio>
+                    <ion-label>{{teamMap[data['team-2']]}}</ion-label>
+                    <ion-radio value="{{teamMap[data['team-2']]}}"></ion-radio>
                   </ion-item>
                 </ion-col>
               </ion-row>
@@ -113,7 +115,7 @@
           <div class="save-button">
             <ion-button
               (click)="addBet(data, i)"
-              [disabled]="!betData.teamFor || !rat || !amt || !betData.currency"
+              [disabled]="!betData.chosenTeam || !rat || !amt || !betData.currency"
             >
               <ion-icon name="save"></ion-icon>
             </ion-button>

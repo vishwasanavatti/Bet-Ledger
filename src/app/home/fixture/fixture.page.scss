@@ -1,8 +1,3 @@
-.col {
-  padding-right: 25px;
-  padding-left: 25px;
-}
-
 .fixtureStyle {
   background: gold;
   border: 1px solid black;
@@ -14,7 +9,12 @@
 
 .cardTitle {
   font-size: 15px;
-  text-align: center;
+  text-align: left;
+  padding: 10px;
+}
+
+.date {
+  float: right;
 }
 
 .searchBar {
@@ -26,11 +26,6 @@
   font-weight: bolder;
   color: black;
   align-self: center;
-}
-
-.inputStyle {
-  align-self: center;
-  margin-top: 20px;
 }
 
 .content-css {
@@ -58,4 +53,11 @@
 
 .save-button {
   align-self: center;
+}
+
+.team-style {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  padding-bottom: 10px;
 }

@@ -1,8 +1,9 @@
 export interface Ledger {
   id: number;
   matchNumber: number;
-  teamFor: string;
-  teamAgainst: string;
+  team1: string;
+  team2: string;
+  chosenTeam: string;
   date: string;
   ratioType: string;
   ratioValue: number;
@@ -53,3 +54,14 @@ export const result = [
     displayName: 'No Result',
   },
 ];
+
+export const teamsMap = {
+  'Mumbai Indians': 'MI',
+  'Chennai Super Kings': 'CSK',
+  'Delhi Capitals': 'DC',
+  'Kings XI Punjab': 'KXIP',
+  'Sunrisers Hyderabad': 'SRH',
+  'Royal Challengers Bangalore': 'RCB',
+  'Kolkata Knight Riders': 'KKR',
+  'Rajasthan Royals': 'RR',
+};

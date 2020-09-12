@@ -57,7 +57,7 @@ export class UpdateBetEntryComponent {
   }
 
   amoutUpdate(): void {
-    if (this.updateEntry.result && this.updateEntry.result !== null) {
+    if (this.updateEntry.result && this.updateEntry.result !== '') {
       if (this.updateEntry.result === 'nr') {
         this.updateEntry.resultAmt = 0;
       } else {

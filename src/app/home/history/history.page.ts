@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { Ledger } from '../../model/bet-form.model';
+import { Ledger, teamsMap } from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-history',
@@ -9,10 +9,13 @@ import { Ledger } from '../../model/bet-form.model';
   styleUrls: ['./history.page.scss'],
 })
 export class HistoryPage implements OnInit {
+  teamMap: any;
   constructor(
     private navController: NavController,
     private storage: StorageService
-  ) {}
+  ) {
+    this.teamMap = teamsMap;
+  }
 
   betRecords: Ledger[];
 

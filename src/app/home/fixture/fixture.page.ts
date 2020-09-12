@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../../services/storage.service';
-import { Ledger, currency, ratio } from '../../model/bet-form.model';
+import { Ledger, currency, ratio, teamsMap } from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-fixture',
@@ -17,6 +17,8 @@ export class FixturePage implements OnInit {
   // bad coding fix later
   rat: number;
   amt: number;
+
+  teamMap: any;
   currencies: any;
   ratType: any;
 
@@ -28,13 +30,15 @@ export class FixturePage implements OnInit {
   ) {
     this.currencies = currency;
     this.ratType = ratio;
+    this.teamMap = teamsMap;
   }
 
   betData: Ledger = {
     id: null,
     matchNumber: null,
-    teamFor: '',
-    teamAgainst: '',
+    team1: '',
+    team2: '',
+    chosenTeam: '',
     date: '',
     ratioType: '',
     ratioValue: null,
@@ -47,34 +51,34 @@ export class FixturePage implements OnInit {
 
   ngOnInit() {
     const json = require('../../../assets/fixtures.json');
-    this.fixtures = json.fixtures;
-    this.filterItems = this.fixtures;
+    // this.fixtures = json.fixtures;
+    // this.filterItems = this.fixtures;
     this.http
       .get(
         'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
       )
       .subscribe((response) => {
-        // this.setFixture(response);
+        this.setFixture(response);
       });
   }
 
   setFixture(data: any): void {
     this.fixtures = data.matches.filter((x) => x.type === 'Twenty20');
-    console.log(this.fixtures);
-    // this.filterItems = this.fixtures;
+    this.filterItems = this.fixtures;
   }
 
   search(): void {
     if (this.searchValue && this.searchValue.trim() !== ' ') {
       this.filterItems = this.fixtures.filter(
         (item) =>
-          item.team1
+          item['team-1']
             .toLowerCase()
             .indexOf(this.searchValue.toLowerCase().trim()) > -1 ||
-          item.team2
+          item['team-2']
             .toLowerCase()
             .indexOf(this.searchValue.toLowerCase().trim()) > -1 ||
           item.date
+            .split('T')[0]
             .toLowerCase()
             .indexOf(this.searchValue.toLowerCase().trim()) > -1
       );
@@ -87,8 +91,9 @@ export class FixturePage implements OnInit {
     this.betData = {
       id: null,
       matchNumber: null,
-      teamFor: '',
-      teamAgainst: '',
+      team1: '',
+      team2: '',
+      chosenTeam: '',
       date: '',
       ratioType: '',
       ratioValue: null,
@@ -114,17 +119,19 @@ export class FixturePage implements OnInit {
     }
   }
 
+  getDate(data: any): string {
+    return data.date.split('T')[0];
+  }
+
   addBet(data: any, i: number): void {
     this.betData.isActive = true;
-    this.betData.date = data.date;
+    this.betData.date = data.date.split('T')[0];
     this.betData.matchNumber = i + 1;
     this.betData.ratioValue = this.rat;
     this.betData.amount = this.amt;
-    if (this.betData.teamFor === data.team1) {
-      this.betData.teamAgainst = data.team2;
-    } else {
-      this.betData.teamAgainst = data.team1;
-    }
+    this.betData.team1 = data['team-1'];
+    this.betData.team2 = data['team-2'];
+
     this.storage.getNextId().then((key) => {
       this.betData.id = key;
       this.storage.addBet(this.betData.id.toString(), this.betData);

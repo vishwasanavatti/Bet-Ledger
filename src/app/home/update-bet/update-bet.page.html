@@ -27,8 +27,15 @@
             </p>
 
             <p class="teams-css">
-              <span class="teamFor">{{data.teamFor}}</span> vs
-              {{data.teamAgainst}}
+              <span
+                [ngClass]="teamMap[data.team1] === data.chosenTeam ? 'teamFor' : ''"
+                >{{data.team1}}</span
+              >
+              vs
+              <span
+                [ngClass]="teamMap[data.team2] === data.chosenTeam ? 'teamFor' : ''"
+                >{{data.team2}}</span
+              >
             </p>
 
             <p class="values">
