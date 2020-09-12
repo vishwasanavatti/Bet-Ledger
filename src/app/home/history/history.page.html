@@ -16,48 +16,59 @@
 let data of betRecords"
       class="list-style"
     >
-      <ion-item class="bet-entry ion-no-padding">
-        <ion-label>
-          <p class="match-head">
-            Match {{ data.matchNumber }}
-            <span class="match-date">{{data.date}}</span>
-          </p>
+      <ion-item-sliding *ngFor=" let data of betRecords; let i = index ">
+        <ion-item class="bet-entry ion-no-padding">
+          <ion-label>
+            <p class="match-head">
+              Match {{ data.matchNumber }}
+              <span class="match-date">{{data.date}}</span>
+            </p>
 
-          <p class="teams-css">
-            <span
-              [ngClass]="teamMap[data.team1] === data.chosenTeam ? 'chosen-team' : ''"
-              >{{data.team1}}</span
-            >
-            vs
-            <span
-              [ngClass]="teamMap[data.team2] === data.chosenTeam ? 'chosen-team' : ''"
-              >{{data.team2}}</span
-            >
-          </p>
+            <p class="teams-css">
+              <span
+                [ngClass]="teamMap[data.team1] === data.chosenTeam ? 'chosen-team' : ''"
+                >{{data.team1}}</span
+              >
+              vs
+              <span
+                [ngClass]="teamMap[data.team2] === data.chosenTeam ? 'chosen-team' : ''"
+                >{{data.team2}}</span
+              >
+            </p>
 
-          <p class="values">
-            Amount:
-            <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
-              >{{data.resultAmt}}</span
-            >
-            EUR
-            <span class="ratio"
-              >ratio: {{data.ratioValue}} {{data.ratioType}}</span
-            >
-          </p>
-        </ion-label>
-        <div>
-          <span *ngIf="data.result === 'won'" class="won-css result-icon"
-            ><ion-icon name="checkmark-circle-outline"></ion-icon
-          ></span>
-          <span *ngIf="data.result === 'lost'" class="lost-css result-icon"
-            ><ion-icon name="close-circle-outline"></ion-icon
-          ></span>
-          <span *ngIf="data.result === 'nr'" class="nr-css result-icon"
-            ><ion-icon name="remove-circle-outline"></ion-icon
-          ></span>
-        </div>
-      </ion-item>
+            <p class="values">
+              Amount:
+              <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
+                >{{data.resultAmt}}</span
+              >
+              EUR
+              <span class="ratio"
+                >ratio: {{data.ratioValue}} {{data.ratioType}}</span
+              >
+            </p>
+          </ion-label>
+          <div>
+            <span *ngIf="data.result === 'won'" class="won-css result-icon"
+              ><ion-icon name="checkmark-circle-outline"></ion-icon
+            ></span>
+            <span *ngIf="data.result === 'lost'" class="lost-css result-icon"
+              ><ion-icon name="close-circle-outline"></ion-icon
+            ></span>
+            <span *ngIf="data.result === 'nr'" class="nr-css result-icon"
+              ><ion-icon name="remove-circle-outline"></ion-icon
+            ></span>
+          </div>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option
+            color="danger"
+            expandable
+            (click)="delete(data.id, i)"
+          >
+            <ion-icon name="trash" size="large"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </span>
 
