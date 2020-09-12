@@ -51,7 +51,6 @@ export class FixturePage implements OnInit {
   }
 
   ngOnInit() {
-    const json = require('../../../assets/fixtures.json');
     this.http
       .get(
         'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
