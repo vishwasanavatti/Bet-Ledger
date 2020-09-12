@@ -61,17 +61,26 @@ export class UpdateBetEntryComponent {
       if (this.updateEntry.result === 'nr') {
         this.updateEntry.resultAmt = 0;
       } else {
-        if (
-          (this.updateEntry.ratioType &&
-            this.updateEntry.ratioType === 'give' &&
-            this.updateEntry.result === 'won') ||
-          (this.updateEntry.ratioType === 'get' &&
-            this.updateEntry.result === 'lost')
-        ) {
-          this.updateEntry.resultAmt = this.updateEntry.amount;
+        if (this.updateEntry.ratioType) {
+          if (
+            (this.updateEntry.ratioType === 'give' &&
+              this.updateEntry.result === 'won') ||
+            (this.updateEntry.ratioType === 'get' &&
+              this.updateEntry.result === 'lost')
+          ) {
+            this.updateEntry.resultAmt = this.updateEntry.amount;
+          } else {
+            this.updateEntry.resultAmt =
+              this.updateEntry.amount * this.updateEntry.ratioValue;
+          }
         } else {
-          this.updateEntry.resultAmt =
-            this.updateEntry.amount * this.updateEntry.ratioValue;
+          if (this.updateEntry.result === 'won') {
+            this.updateEntry.resultAmt =
+              this.updateEntry.amount * (this.updateEntry.ratioValue - 1) -
+              this.updateEntry.amount * this.updateEntry.ratioValue * 0.05;
+          } else {
+            this.updateEntry.resultAmt = this.updateEntry.amount;
+          }
         }
       }
     }

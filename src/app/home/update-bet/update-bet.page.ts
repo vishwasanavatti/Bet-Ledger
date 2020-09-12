@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { Ledger, teamsMap } from '../../model/bet-form.model';
+import { Ledger, teamsMap, conversionRate } from '../../model/bet-form.model';
 import { ModalController } from '@ionic/angular';
 import { UpdateBetEntryComponent } from './update-bet-entry/update-bet-entry.component';
 
@@ -50,6 +50,7 @@ export class UpdateBetPage implements OnInit {
           data.isActive = false;
           this.activeBets.splice(i, 1);
         }
+        data = this.currencyConvertor(data);
         this.storage.updateBet(data.id.toString(), data);
       } else {
         window.location.reload();
@@ -83,6 +84,15 @@ export class UpdateBetPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  currencyConvertor(val: any): any {
+    if (val.currency === 'INR') {
+      val.resultAmt = val.resultAmt * conversionRate.inrToEuro;
+    } else if (val.currency === 'USD') {
+      val.resultAmt = val.resultAmt * conversionRate.usdToEuro;
+    }
+    return val;
   }
 
   goBack() {
