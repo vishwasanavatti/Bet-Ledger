@@ -273,4 +273,8 @@
   ion-card-content {
     background: black;
   }
+
+  .content {
+    color: var(--ion-text-color) !important;
+  }
 }
