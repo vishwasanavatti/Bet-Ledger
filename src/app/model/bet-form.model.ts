@@ -69,4 +69,6 @@ export const teamsMap = {
 export const conversionRate = {
   eurToInr: 87,
   eurToUsd: 1.18,
+  inrToEuro: 0.011,
+  usdToEuro: 0.845,
 };
