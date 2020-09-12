@@ -65,3 +65,8 @@ export const teamsMap = {
   'Kolkata Knight Riders': 'KKR',
   'Rajasthan Royals': 'RR',
 };
+
+export const conversionRate = {
+  eurToInr: 87,
+  eurToUsd: 1.18,
+};

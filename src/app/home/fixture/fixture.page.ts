@@ -120,7 +120,7 @@ export class FixturePage implements OnInit {
   }
 
   getDate(data: any): string {
-    return data.date.split('T')[0];
+    return data.split('T')[0];
   }
 
   addBet(data: any, i: number): void {

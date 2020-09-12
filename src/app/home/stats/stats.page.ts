@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { Ledger, currency } from '../../model/bet-form.model';
+import { Ledger, currency, conversionRate } from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-stats',
@@ -10,12 +10,8 @@ import { Ledger, currency } from '../../model/bet-form.model';
 })
 export class StatsPage implements OnInit {
   currencies: any;
-  constructor(
-    private navController: NavController,
-    private storage: StorageService
-  ) {
-    this.currencies = currency;
-  }
+  currencySelected: string;
+  conversionValue: number;
 
   biggestWin: number;
   biggestWinTeam: string;
@@ -31,6 +27,14 @@ export class StatsPage implements OnInit {
   worstTeam: string;
   favouriteTeamTotal: number;
   worstTeamTotal: number;
+
+  constructor(
+    private navController: NavController,
+    private storage: StorageService
+  ) {
+    this.currencies = currency;
+    this.conversionValue = 1;
+  }
 
   ngOnInit() {
     this.storage
@@ -122,7 +126,15 @@ export class StatsPage implements OnInit {
     this.worstTeamTotal = teamTotals.length > 0 ? Math.min(...teamTotals) : 0;
   }
 
-  currencyValUpdate(): void {}
+  currencyValUpdate(): void {
+    if (this.currencySelected === 'INR') {
+      this.conversionValue = conversionRate.eurToInr;
+    } else if (this.currencySelected === 'USD') {
+      this.conversionValue = conversionRate.eurToUsd;
+    } else {
+      this.conversionValue = 1;
+    }
+  }
 
   goBack(): void {
     this.navController.navigateRoot('/home');
