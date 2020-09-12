@@ -88,9 +88,9 @@ export class UpdateBetPage implements OnInit {
 
   currencyConvertor(val: any): any {
     if (val.currency === 'INR') {
-      val.resultAmt = val.resultAmt * conversionRate.inrToEuro;
+      val.resultAmt = val.resultAmt / conversionRate.eurToInr;
     } else if (val.currency === 'USD') {
-      val.resultAmt = val.resultAmt * conversionRate.usdToEuro;
+      val.resultAmt = val.resultAmt / conversionRate.eurToUsd;
     }
     return val;
   }
