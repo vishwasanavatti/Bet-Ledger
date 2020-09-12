@@ -114,11 +114,12 @@ export class StatsPage implements OnInit {
       teamTotals.indexOf(Math.max(...teamTotals))
     ];
 
-    this.favouriteTeamTotal = Math.max(...teamTotals);
+    this.favouriteTeamTotal =
+      teamTotals.length > 0 ? Math.max(...teamTotals) : 0;
 
     this.worstTeam = [...teamList][teamTotals.indexOf(Math.min(...teamTotals))];
 
-    this.worstTeamTotal = Math.min(...teamTotals);
+    this.worstTeamTotal = teamTotals.length > 0 ? Math.min(...teamTotals) : 0;
   }
 
   currencyValUpdate(): void {}

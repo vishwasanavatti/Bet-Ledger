@@ -9,11 +9,11 @@
 }
 
 .won-css {
-  background: red;
+  background: var(--ion-color-success);
 }
 
 .lost-css {
-  background: green;
+  background: var(--ion-color-danger);
 }
 
 .currency-filter {

@@ -10,7 +10,7 @@
 .match-head,
 .teams-css,
 .values {
-  color: black;
+  color: var(--ion-color-dark);
   font-weight: bold;
   font-size: 15px;
 }
@@ -28,7 +28,7 @@
 }
 
 .teamFor {
-  color: red;
+  color: var(--ion-color-danger);
 }
 
 .values {
@@ -41,5 +41,5 @@
   font-weight: bold;
   font-size: 24px;
   background: #131313;
-  color: white;
+  color: var(--ion-color-light);
 }

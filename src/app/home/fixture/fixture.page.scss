@@ -1,10 +1,10 @@
 .fixtureStyle {
   background: gold;
-  border: 1px solid black;
+  border: 1px solid var(--ion-color-dark);
   font-weight: bolder;
   letter-spacing: 4px;
   text-align: center;
-  color: black;
+  color: var(--ion-color-dark);
 }
 
 .cardTitle {
@@ -24,7 +24,7 @@
 .labelHeader {
   margin-left: 25px;
   font-weight: bolder;
-  color: black;
+  color: var(--ion-color-dark);
   align-self: center;
 }
 
