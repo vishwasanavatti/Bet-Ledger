@@ -21,17 +21,7 @@ export class FixturePage implements OnInit {
   teamMap: any;
   currencies: any;
   ratType: any;
-
-  constructor(
-    private navController: NavController,
-    private http: HttpClient,
-    private storage: StorageService,
-    private toastController: ToastController
-  ) {
-    this.currencies = currency;
-    this.ratType = ratio;
-    this.teamMap = teamsMap;
-  }
+  isPromiseResolved = false;
 
   betData: Ledger = {
     id: null,
@@ -49,10 +39,19 @@ export class FixturePage implements OnInit {
     resultAmt: null,
   };
 
+  constructor(
+    private navController: NavController,
+    private http: HttpClient,
+    private storage: StorageService,
+    private toastController: ToastController
+  ) {
+    this.currencies = currency;
+    this.ratType = ratio;
+    this.teamMap = teamsMap;
+  }
+
   ngOnInit() {
     const json = require('../../../assets/fixtures.json');
-    // this.fixtures = json.fixtures;
-    // this.filterItems = this.fixtures;
     this.http
       .get(
         'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
@@ -63,6 +62,7 @@ export class FixturePage implements OnInit {
   }
 
   setFixture(data: any): void {
+    this.isPromiseResolved = true;
     this.fixtures = data.matches.filter((x) => x.type === 'Twenty20');
     this.filterItems = this.fixtures;
   }

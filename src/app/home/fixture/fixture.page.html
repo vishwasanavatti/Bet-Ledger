@@ -17,111 +17,129 @@
 ></ion-searchbar>
 
 <ion-content>
-  <ion-card class="content-css" *ngFor="let data of filterItems; let i = index">
-    <ion-card-header class="ion-no-padding fixtureStyle" (click)="expand(data)">
-      <ion-card-title class="cardTitle"
-        >Match {{i+1}}
-        <ion-label class="date">{{getDate(data)}}</ion-label></ion-card-title
+  <span *ngIf="!isPromiseResolved; else fixtureContent" class="spinner-css">
+    <ion-spinner></ion-spinner>
+  </span>
+  <ng-template #fixtureContent>
+    <ion-card
+      class="content-css"
+      *ngFor="let data of filterItems; let i = index"
+    >
+      <ion-card-header
+        class="ion-no-padding fixtureStyle"
+        (click)="expand(data)"
       >
-      <div class="team-style">
-        <ion-label>{{data['team-1']}}</ion-label>
-        <ion-label>vs</ion-label>
-        <ion-label>{{data['team-2']}}</ion-label>
-      </div>
-    </ion-card-header>
-
-    <ion-card-content>
-      <app-expandable expandHeight="200px" [expanded]="data.expanded">
-        <ion-row class="ion-row-css">
-          <ion-radio-group [(ngModel)]="betData.chosenTeam">
-            <ion-grid class="ion-no-padding">
-              <ion-row class="ion-row-css">
-                <ion-label class="labelHeader">Team</ion-label>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>{{teamMap[data['team-1']]}}</ion-label>
-                    <ion-radio value="{{teamMap[data['team-1']]}}"></ion-radio>
-                  </ion-item>
-                </ion-col>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>{{teamMap[data['team-2']]}}</ion-label>
-                    <ion-radio value="{{teamMap[data['team-2']]}}"></ion-radio>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-radio-group>
-        </ion-row>
-
-        <div class="values">
-          <div>
-            <ion-item class="value-entry ion-no-padding">
-              <ion-icon
-                class="ion-no-padding"
-                slot="start"
-                name="trending-up"
-                size="medium"
-              ></ion-icon>
-              <ion-select
-                slot="end"
-                interface="popover"
-                [(ngModel)]="betData.ratioType"
-                class="ion-no-padding select"
-              >
-                <ion-select-option *ngFor="let r of ratType" [value]="r.value">
-                  {{ r.displayName }}</ion-select-option
-                >
-              </ion-select>
-              <ion-input
-                class="ion-no-padding"
-                [(ngModel)]="rat"
-                type="number"
-                placeholder="ratio"
-              >
-              </ion-input>
-            </ion-item>
-
-            <ion-item class="value-entry ion-no-padding">
-              <ion-icon
-                class="ion-no-padding"
-                slot="start"
-                name="cash-outline"
-                size="medium"
-              ></ion-icon>
-              <ion-select
-                slot="end"
-                interface="popover"
-                [(ngModel)]="betData.currency"
-                class="ion-no-padding select"
-              >
-                <ion-select-option
-                  *ngFor="let c of currencies"
-                  [value]="c.value"
-                >
-                  {{ c.displayName }}</ion-select-option
-                >
-              </ion-select>
-              <ion-input
-                class="ion-no-padding"
-                type="number"
-                [(ngModel)]="amt"
-                placeholder="Amount"
-              >
-              </ion-input>
-            </ion-item>
-          </div>
-
-          <div class="save-button">
-            <ion-button
-              (click)="addBet(data, i)"
-              [disabled]="!betData.chosenTeam || !rat || !amt || !betData.currency"
-            >
-              <ion-icon name="save"></ion-icon>
-            </ion-button>
-          </div>
+        <ion-card-title class="cardTitle"
+          >Match {{i+1}}
+          <ion-label class="date">{{getDate(data)}}</ion-label></ion-card-title
+        >
+        <div class="team-style">
+          <ion-label>{{data['team-1']}}</ion-label>
+          <ion-label>vs</ion-label>
+          <ion-label>{{data['team-2']}}</ion-label>
         </div>
-      </app-expandable>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-header>
+
+      <ion-card-content>
+        <app-expandable expandHeight="200px" [expanded]="data.expanded">
+          <ion-row class="ion-row-css">
+            <ion-radio-group [(ngModel)]="betData.chosenTeam">
+              <ion-grid class="ion-no-padding">
+                <ion-row class="ion-row-css">
+                  <ion-label class="labelHeader">Team</ion-label>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label>{{teamMap[data['team-1']]}}</ion-label>
+                      <ion-radio
+                        value="{{teamMap[data['team-1']]}}"
+                      ></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label>{{teamMap[data['team-2']]}}</ion-label>
+                      <ion-radio
+                        value="{{teamMap[data['team-2']]}}"
+                      ></ion-radio>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-radio-group>
+          </ion-row>
+
+          <div class="values">
+            <div>
+              <ion-item class="value-entry ion-no-padding">
+                <ion-icon
+                  class="ion-no-padding"
+                  slot="start"
+                  name="trending-up"
+                  size="medium"
+                ></ion-icon>
+                <ion-select
+                  slot="end"
+                  interface="popover"
+                  [(ngModel)]="betData.ratioType"
+                  class="ion-no-padding select"
+                >
+                  <ion-select-option
+                    *ngFor="let r of ratType"
+                    [value]="r.value"
+                  >
+                    {{ r.displayName }}</ion-select-option
+                  >
+                </ion-select>
+                <ion-input
+                  class="ion-no-padding"
+                  [(ngModel)]="rat"
+                  type="number"
+                  placeholder="ratio"
+                >
+                </ion-input>
+              </ion-item>
+
+              <ion-item class="value-entry ion-no-padding">
+                <ion-icon
+                  class="ion-no-padding"
+                  slot="start"
+                  name="cash-outline"
+                  size="medium"
+                ></ion-icon>
+                <ion-select
+                  slot="end"
+                  interface="popover"
+                  [(ngModel)]="betData.currency"
+                  class="ion-no-padding select"
+                >
+                  <ion-select-option
+                    *ngFor="let c of currencies"
+                    [value]="c.value"
+                  >
+                    {{ c.displayName }}</ion-select-option
+                  >
+                </ion-select>
+                <ion-input
+                  class="ion-no-padding"
+                  type="number"
+                  [(ngModel)]="amt"
+                  placeholder="Amount"
+                >
+                </ion-input>
+              </ion-item>
+            </div>
+
+            <div class="save-button">
+              <ion-button
+                (click)="addBet(data, i)"
+                [disabled]="!betData.chosenTeam || !rat || !amt || !betData.currency"
+              >
+                <ion-icon name="save"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
+        </app-expandable>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
 </ion-content>

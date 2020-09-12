@@ -61,3 +61,12 @@
   font-size: 18px;
   padding-bottom: 10px;
 }
+
+.spinner-css {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform: scale(1.5);
+  background-color: var(--ion-color-light);
+}
