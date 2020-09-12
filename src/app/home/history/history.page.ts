@@ -18,6 +18,7 @@ export class HistoryPage implements OnInit {
   }
 
   betRecords: Ledger[];
+  betRecordsSize: number;
 
   ngOnInit() {
     this.storage.getAllBets<Ledger>().then((items) => {
@@ -29,6 +30,7 @@ export class HistoryPage implements OnInit {
     this.betRecords = inp.filter(
       (x) => x.isActive === false && x.result && x.result !== ''
     );
+    this.betRecordsSize = this.betRecords.length;
   }
 
   goBack() {

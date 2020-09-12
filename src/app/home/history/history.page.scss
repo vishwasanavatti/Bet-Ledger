@@ -9,7 +9,7 @@
 .match-head,
 .teams-css,
 .values {
-  color: black;
+  color: var(--ion-color-dark);
   font-weight: bold;
   font-size: 15px;
 }
@@ -32,17 +32,25 @@
 }
 
 .won-css {
-  color: green;
+  color: var(--ion-color-success);
 }
 
 .lost-css {
-  color: red;
+  color: var(--ion-color-danger);
 }
 
 .nr-css {
-  color: grey;
+  color: var(--ion-color-medium);
 }
 
 .result-icon {
   font-size: 30px;
+}
+
+.content {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  background: #131313;
+  color: var(--ion-color-light);
 }
