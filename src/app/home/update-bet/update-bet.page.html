@@ -10,9 +10,8 @@
 </ion-header>
 
 <ion-content>
-  <ion-list class="list-style">
-    <!-- Sliding item with bet information -->
-    <span *ngIf="activeBetsSize && activeBetsSize > 0">
+  <span *ngIf="activeBetsSize && activeBetsSize > 0">
+    <ion-list class="list-style">
       <ion-item-sliding
         *ngFor="
       let data of activeBets;
@@ -57,12 +56,12 @@
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>
-    </span>
+    </ion-list>
+  </span>
 
-    <span *ngIf="activeBetsSize < 0 || activeBetsSize === 0">
-      <div class="content">
-        <div>No active Bets</div>
-      </div>
-    </span>
-  </ion-list>
+  <span *ngIf="activeBetsSize < 0 || activeBetsSize === 0">
+    <div class="content">
+      <div>No active Bets</div>
+    </div>
+  </span>
 </ion-content>
