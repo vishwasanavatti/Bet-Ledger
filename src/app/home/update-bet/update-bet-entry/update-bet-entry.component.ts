@@ -78,7 +78,7 @@ export class UpdateBetEntryComponent {
   amoutUpdate(): void {
     if (this.updateEntry.result && this.updateEntry.result !== '') {
       if (this.updateEntry.result === 'nr') {
-        this.updateEntry.resultAmt = 0;
+        this.updateEntry.resultAmt = 0.0;
       } else {
         if (this.updateEntry.ratioType) {
           if (
@@ -102,6 +102,8 @@ export class UpdateBetEntryComponent {
           }
         }
       }
+      this.updateEntry.resultAmt =
+        Math.round(this.updateEntry.resultAmt * 100) / 100;
     }
   }
 }

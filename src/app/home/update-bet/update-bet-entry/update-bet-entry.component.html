@@ -43,6 +43,7 @@
             type="number"
             [(ngModel)]="updateEntry.ratioValue"
             placeholder="ratio"
+            (ionChange)="amoutUpdate()"
           >
           </ion-input>
         </ion-item>
@@ -73,6 +74,7 @@
             type="number"
             [(ngModel)]="updateEntry.amount"
             placeholder="amount"
+            (ionChange)="amoutUpdate()"
           >
           </ion-input>
         </ion-item>
@@ -102,7 +104,7 @@
             class="ion-no-padding"
             type="number"
             [(ngModel)]="updateEntry.resultAmt"
-            placeholder="updateEntry.resultAmt"
+            placeholder="{{ updateEntry.resultAmt }}"
           >
           </ion-input>
         </ion-item>

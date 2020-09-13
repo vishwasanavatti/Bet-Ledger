@@ -1,6 +1,7 @@
 /**
  * @description
  *  This file handles all the CRUD operations related to ionic storage
+ *  This file is referenced from Digitact project
  */
 import { Injectable } from '@angular/core';
 import {
@@ -43,7 +44,7 @@ export class StorageService {
 
   /**
    * Used to get the corresponding storage method keyword used by localforage
-   * @param driveOrder - Holds the prioritised driveer order array
+   * @param driveOrder - Holds the prioritised driver order array
    * @returns array of strings with corresponding keyword supported by localforage
    */
 
@@ -62,7 +63,7 @@ export class StorageService {
 
   /**
    * Used to generate next Id
-   * @returns Promise of string containing next id
+   * @returns Promise of number containing next id
    */
 
   async getNextId(): Promise<number> {
@@ -80,10 +81,10 @@ export class StorageService {
   }
 
   /**
-   * Used to create and and add an item in the storage
+   * Used to create and add an item in the storage
    * @param key Unique key for the item
-   * @param value Conatains the FormsData field objects
-   * @returns Promise of forms data object
+   * @param value Conatains the betData
+   * @returns Promise of data object
    */
   async addBet<T>(key: string, value: T): Promise<T> {
     return await new Promise((resolve, reject) => {
@@ -100,7 +101,7 @@ export class StorageService {
   /**
    * Used to get an item from the storage
    * @param key Unique key for the item
-   * @returns Promise of forms data object
+   * @returns Promise of data object
    */
   async getBet<T>(key: string): Promise<T> {
     return await new Promise((resolve, reject) => {
@@ -116,7 +117,7 @@ export class StorageService {
 
   /**
    * Used to get all items from the storage
-   * @returns Promise of array of forms data object
+   * @returns Promise of array of data object
    */
   async getAllBets<T>(): Promise<Array<T>> {
     const items: Array<T> = [];
@@ -169,8 +170,8 @@ export class StorageService {
   /**
    * Used to update an existing item in the storage
    * @param key Unique key for the item
-   * @param value Conatains value to update
-   * @returns Promise of forms data object
+   * @param value Conatains data to update
+   * @returns Promise of data object
    */
   async updateBet<T>(key: string, value: T): Promise<T> {
     return await new Promise((resolve, reject) => {
