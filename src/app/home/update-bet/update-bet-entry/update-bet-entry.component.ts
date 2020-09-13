@@ -16,25 +16,41 @@ export class UpdateBetEntryComponent {
     this.currencies = currency;
     this.results = result;
   }
-
+  /**
+   * holds the constant value and display Name of ratio types
+   */
   ratType: any;
+  /**
+   * holds the constant value and display Name of currencies
+   */
   currencies: any;
+  /**
+   * holds the result
+   */
   results: any;
-
+  /**
+   * Input taken from the update bet page
+   */
   @Input() updateEntry: Ledger;
-
+  /**
+   * In this method 'canSaveData' is set a boolean value to decide whether to update or cancel
+   */
   cancel(): void {
     this.modalController.dismiss({
-      canSubmitData: false,
+      canSaveData: false,
     });
   }
-
+  /**
+   * In this method 'canSaveData' is set a boolean value to decide whether to update or cancel
+   */
   save(): void {
     this.modalController.dismiss({
-      canSubmitData: true,
+      canSaveData: true,
     });
   }
-
+  /**
+   * In this method an alert is displayed to confirm the update of data
+   */
   async update(): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Save?',
@@ -56,6 +72,9 @@ export class UpdateBetEntryComponent {
     await alert.present();
   }
 
+  /**
+   * In this method amount is calculated based on ratio type, value and currency
+   */
   amoutUpdate(): void {
     if (this.updateEntry.result && this.updateEntry.result !== '') {
       if (this.updateEntry.result === 'nr') {
@@ -77,7 +96,7 @@ export class UpdateBetEntryComponent {
           if (this.updateEntry.result === 'won') {
             this.updateEntry.resultAmt =
               this.updateEntry.amount * (this.updateEntry.ratioValue - 1) -
-              this.updateEntry.amount * this.updateEntry.ratioValue * 0.05;
+              this.updateEntry.amount * this.updateEntry.ratioValue * 0.05; // 5% tax on bet365
           } else {
             this.updateEntry.resultAmt = this.updateEntry.amount;
           }

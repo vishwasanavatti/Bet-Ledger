@@ -17,23 +17,34 @@ export class HistoryPage implements OnInit {
   ) {
     this.teamMap = teamsMap;
   }
-
+  /**
+   * Holds the array of completed bets of type Ledger
+   */
   betRecords: Ledger[];
+  /**
+   * Holds the size of completed bets
+   */
   betRecordsSize: number;
-
+  /**
+   * In this method all bets are fetched from local storage
+   */
   ngOnInit() {
     this.storage.getAllBets<Ledger>().then((items) => {
       this.betList(items);
     });
   }
-
+  /**
+   * In this method all the completed bets are filtered
+   */
   betList(inp: Array<Ledger>): void {
     this.betRecords = inp.filter(
       (x) => x.isActive === false && x.result && x.result !== ''
     );
     this.betRecordsSize = this.betRecords.length;
   }
-
+  /**
+   * In this method an alert is displayed to confirm the deletion of bet
+   */
   async delete(id: number, i: number): Promise<void> {
     const alert = await this.alertController.create({
       header: 'Delete Bet?',
@@ -54,12 +65,16 @@ export class HistoryPage implements OnInit {
     });
     await alert.present();
   }
-
+  /**
+   * In this method a bet is deleted from the storage
+   */
   deleteBet(id: number, i: number): void {
     this.storage.deleteBet(id.toString());
     this.betRecords.splice(i, 1);
   }
-
+  /**
+   * this method navigates back to home
+   */
   goBack() {
     this.navController.navigateRoot('/home');
   }

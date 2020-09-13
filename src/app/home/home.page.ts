@@ -8,7 +8,9 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage {
   constructor(private navController: NavController) {}
-  activeBets: number;
+  /**
+   * These methods are to navigate to the corresponding page
+   */
   goToFixture() {
     this.navController.navigateForward(['./home/fixture']);
   }

@@ -9,10 +9,22 @@ import { Ledger, currency, conversionRate } from '../../model/bet-form.model';
   styleUrls: ['./stats.page.scss'],
 })
 export class StatsPage implements OnInit {
+  /**
+   * holds the constant value and display Name of currencies
+   */
   currencies: any;
+  /**
+   * holds the value of currency
+   */
   currencySelected: string;
+  /**
+   * holds the currency conversion value
+   */
   conversionValue: number;
 
+  /**
+   * These variables holds the stats value
+   */
   biggestWin: number;
   biggestWinTeam: string;
   biggestLoss: number;
@@ -35,13 +47,17 @@ export class StatsPage implements OnInit {
     this.currencies = currency;
     this.conversionValue = 1;
   }
-
+  /**
+   * In this method all bets are fetched from local storage
+   */
   ngOnInit() {
     this.storage
       .getAllBets<Ledger>()
       .then((betRecords) => this.statsCalculation(betRecords));
   }
-
+  /**
+   * In this method stats are calculated
+   */
   statsCalculation(val: Ledger[]): void {
     const finalizedBets = val.filter((x) => x.result && x.result !== '');
     const wonBets = finalizedBets.filter((x) => x.result === 'won');
@@ -125,7 +141,9 @@ export class StatsPage implements OnInit {
 
     this.worstTeamTotal = teamTotals.length > 0 ? Math.min(...teamTotals) : 0;
   }
-
+  /**
+   * In this method all the conversion rate is altered based on selection
+   */
   currencyValUpdate(): void {
     if (this.currencySelected === 'INR') {
       this.conversionValue = conversionRate.eurToInr;
@@ -135,7 +153,9 @@ export class StatsPage implements OnInit {
       this.conversionValue = 1;
     }
   }
-
+  /**
+   * this method navigates back to home
+   */
   goBack(): void {
     this.navController.navigateRoot('/home');
   }

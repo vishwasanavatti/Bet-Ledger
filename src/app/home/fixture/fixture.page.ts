@@ -10,19 +10,37 @@ import { Ledger, currency, ratio, teamsMap } from '../../model/bet-form.model';
   styleUrls: ['./fixture.page.scss'],
 })
 export class FixturePage implements OnInit {
+  /**
+   * holds the fixtures
+   */
   fixtures: any;
+  /**
+   * holds the value to search in the fixture list
+   */
   searchValue: string;
-  filterItems: any;
-
-  // bad coding fix later
-  rat: number;
-  amt: number;
-
+  /**
+   * holds the copy of fixtures
+   */
+  fixturesFilter: any;
+  /**
+   * holds the mapping of teams to its abbrevation
+   */
   teamMap: any;
+  /**
+   * holds the constant value and display Name of currencies
+   */
   currencies: any;
+  /**
+   * holds the constant value and display Name of ratio types
+   */
   ratType: any;
+  /**
+   * holds the boolean value to load the fixtures
+   */
   isPromiseResolved = false;
-
+  /**
+   * holds the initial value of each bet data
+   */
   betData: Ledger = {
     id: null,
     matchNumber: null,
@@ -49,7 +67,9 @@ export class FixturePage implements OnInit {
     this.ratType = ratio;
     this.teamMap = teamsMap;
   }
-
+  /**
+   * In this method an API is called to fetch the IPL fixtures and a method is called to filter.
+   */
   ngOnInit() {
     this.http
       .get(
@@ -59,16 +79,20 @@ export class FixturePage implements OnInit {
         this.setFixture(response);
       });
   }
-
-  setFixture(data: any): void {
+  /**
+   * In this method fixtures are filtered and assigned.
+   */
+  setFixture(inp: any): void {
     this.isPromiseResolved = true;
-    this.fixtures = data.matches.filter((x) => x.type === 'Twenty20');
-    this.filterItems = this.fixtures;
+    this.fixtures = inp.matches.filter((x) => x.type === 'Twenty20');
+    this.fixturesFilter = this.fixtures;
   }
-
+  /**
+   * In this method fixtures are filtered based on search value.
+   */
   search(): void {
     if (this.searchValue && this.searchValue.trim() !== ' ') {
-      this.filterItems = this.fixtures.filter(
+      this.fixturesFilter = this.fixtures.filter(
         (item) =>
           item['team-1']
             .toLowerCase()
@@ -82,10 +106,13 @@ export class FixturePage implements OnInit {
             .indexOf(this.searchValue.toLowerCase().trim()) > -1
       );
     } else {
-      this.filterItems = this.fixtures;
+      this.fixturesFilter = this.fixtures;
     }
   }
 
+  /**
+   * In this method previously set betData is reset and content is expanded or closed.
+   */
   expand(data: any): void {
     this.betData = {
       id: null,
@@ -102,13 +129,11 @@ export class FixturePage implements OnInit {
       currency: '',
       resultAmt: null,
     };
-    this.rat = null;
-    this.amt = null;
 
     if (data.expanded) {
       data.expanded = false;
     } else {
-      this.filterItems.map((item) => {
+      this.fixturesFilter.map((item) => {
         if (item === data) {
           item.expanded = !item.expanded;
         } else {
@@ -117,17 +142,19 @@ export class FixturePage implements OnInit {
       });
     }
   }
-
+  /**
+   * In this method date is taken as input and is split to remove time and returned to just display date
+   */
   getDate(data: any): string {
     return data.split('T')[0];
   }
-
+  /**
+   * In this method bet data taken as input and is stored in local storage
+   */
   addBet(data: any, i: number): void {
     this.betData.isActive = true;
     this.betData.date = data.date.split('T')[0];
     this.betData.matchNumber = i + 1;
-    this.betData.ratioValue = this.rat;
-    this.betData.amount = this.amt;
     this.betData.team1 = data['team-1'];
     this.betData.team2 = data['team-2'];
 
@@ -135,9 +162,12 @@ export class FixturePage implements OnInit {
       this.betData.id = key;
       this.storage.addBet(this.betData.id.toString(), this.betData);
       this.betPlaceAlert();
+      this.expand(data);
     });
   }
-
+  /**
+   * In this method a alert shown after the bet is placed.
+   */
   async betPlaceAlert(): Promise<void> {
     const toast = await this.toastController.create({
       message: 'bet added successfully',
@@ -147,7 +177,9 @@ export class FixturePage implements OnInit {
     });
     toast.present();
   }
-
+  /**
+   * this method navigates back to home
+   */
   goBack() {
     this.navController.navigateRoot('/home');
   }

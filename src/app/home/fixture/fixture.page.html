@@ -23,7 +23,7 @@
   <ng-template #fixtureContent>
     <ion-card
       class="content-css"
-      *ngFor="let data of filterItems; let i = index"
+      *ngFor="let data of fixturesFilter; let i = index"
     >
       <ion-card-header
         class="ion-no-padding fixtureStyle"
@@ -94,7 +94,7 @@
                 </ion-select>
                 <ion-input
                   class="ion-no-padding"
-                  [(ngModel)]="rat"
+                  [(ngModel)]="betData.ratioValue"
                   type="number"
                   placeholder="ratio"
                 >
@@ -124,7 +124,7 @@
                 <ion-input
                   class="ion-no-padding"
                   type="number"
-                  [(ngModel)]="amt"
+                  [(ngModel)]="betData.amount"
                   placeholder="Amount"
                 >
                 </ion-input>
@@ -134,7 +134,7 @@
             <div class="save-button">
               <ion-button
                 (click)="addBet(data, i)"
-                [disabled]="!betData.chosenTeam || !rat || !amt || !betData.currency"
+                [disabled]="!betData.chosenTeam || !betData.ratioValue || !betData.amount || !betData.currency"
               >
                 <ion-icon name="save"></ion-icon>
               </ion-button>
