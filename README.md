@@ -12,19 +12,20 @@ Downloand and install NodeJS - https://nodejs.org/en/download/
 
 It is recommended to install the global Angular and Ionic packages:
 
-## `npm install -g @angular/cli`
+`npm install -g @angular/cli`
 
-## `npm install -g @ionic/cli`
+`npm install -g @ionic/cli`
 
 # Run the project
 
 clone the repository - https://github.com/vishwasanavatti/betLedger.git
+
 go to project folder - `cd betLedger`
 
 `npm install`
 
 `ng serve` - server will start on `localhost:4200`
 
-    or
+or
 
 `ionic serve` - server will start on `localhost:8100`
