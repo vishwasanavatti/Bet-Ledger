@@ -69,6 +69,7 @@ export class FixturePage implements OnInit {
   }
   /**
    * In this method an API is called to fetch the IPL fixtures and a method is called to filter.
+   * currently cricapi is used to fetch fixtures of IPL 2020 (can be changed in future based on the tournament)
    */
   ngOnInit() {
     this.http
