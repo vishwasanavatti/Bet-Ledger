@@ -76,9 +76,12 @@ export class FixturePage implements OnInit {
       .get(
         'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
       )
-      .subscribe((response) => {
-        this.setFixture(response);
-      });
+      .subscribe(
+        (response) => {
+          this.setFixture(response);
+        },
+        (error) => {}
+      );
   }
   /**
    * In this method fixtures are filtered and assigned.

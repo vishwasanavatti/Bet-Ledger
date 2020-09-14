@@ -1,0 +1,13 @@
+{
+  "appId": "de.project.betledger",
+  "appName": "Bet Ledger",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 3000
+    }
+  },
+  "cordova": {}
+}

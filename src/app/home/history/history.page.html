@@ -11,11 +11,7 @@
 
 <ion-content>
   <span *ngIf="betRecordsSize > 0">
-    <ion-list
-      *ngFor="
-let data of betRecords"
-      class="list-style"
-    >
+    <ion-list class="list-style">
       <ion-item-sliding *ngFor=" let data of betRecords; let i = index ">
         <ion-item class="bet-entry ion-no-padding">
           <ion-label>
