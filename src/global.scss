@@ -25,21 +25,4 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
-.searchbar-input {
-  background: var(--ion-color-light) !important;
-  border-radius: 30px !important;
-  font-size: 1.25em !important;
-  border: 2px solid transparent;
-}
-
-.modal-css .modal-wrapper {
-  height: 50%;
-  top: 60%;
-  position: absolute;
-  display: block;
-}
-.custom-alert-button-colors {
-  .color-secondary {
-    color: var(--ion-color-danger);
-  }
-}
+@import './theme/custom.scss';
