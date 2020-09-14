@@ -17,7 +17,10 @@
 ></ion-searchbar>
 
 <ion-content>
-  <span *ngIf="!isPromiseResolved; else fixtureContent" class="spinner-css">
+  <span
+    *ngIf="!isPromiseResolved && !isError; else fixtureContent"
+    class="spinner-css"
+  >
     <ion-spinner></ion-spinner>
   </span>
   <ng-template #fixtureContent>
@@ -144,4 +147,10 @@
       </ion-card-content>
     </ion-card>
   </ng-template>
+
+  <span *ngIf="isError">
+    <div class="message-css">
+      <div>Error in loading fixtures. Please try again after sometime.</div>
+    </div>
+  </span>
 </ion-content>

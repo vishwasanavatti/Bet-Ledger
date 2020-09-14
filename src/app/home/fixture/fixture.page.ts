@@ -39,6 +39,10 @@ export class FixturePage implements OnInit {
    */
   isPromiseResolved = false;
   /**
+   * holds the boolean value to indicate error while loading fixtures
+   */
+  isError = false;
+  /**
    * holds the initial value of each bet data
    */
   betData: Ledger = {
@@ -80,7 +84,9 @@ export class FixturePage implements OnInit {
         (response) => {
           this.setFixture(response);
         },
-        (error) => {}
+        (error) => {
+          this.isError = true;
+        }
       );
   }
   /**
