@@ -78,7 +78,7 @@ export class FixturePage implements OnInit {
   ngOnInit() {
     this.http
       .get(
-        'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
+        'https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
       )
       .subscribe(
         (response) => {
@@ -86,15 +86,30 @@ export class FixturePage implements OnInit {
         },
         (error) => {
           this.isError = true;
+          this.setFixtureFromLocal();
         }
       );
+  }
+  /**
+   * In this method fixtures are fetched locally.
+   * This is done due to cricapi.com server went down after days of implementation
+   */
+  setFixtureFromLocal(): void {
+    const localFixtures = require('../../../assets/fixtures.json');
+    this.fixtures = localFixtures.fixtures;
+    this.fixturesFilter = this.fixtures;
+    this.isPromiseResolved = true;
   }
   /**
    * In this method fixtures are filtered and assigned.
    */
   setFixture(inp: any): void {
     this.isPromiseResolved = true;
-    this.fixtures = inp.matches.filter((x) => x.type === 'Twenty20');
+    if (!this.isError) {
+      this.fixtures = inp.matches.filter((x) => x.type === 'Twenty20');
+    } else {
+      this.setFixtureFromLocal();
+    }
     this.fixturesFilter = this.fixtures;
   }
   /**
