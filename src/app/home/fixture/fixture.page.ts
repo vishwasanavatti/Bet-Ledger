@@ -86,29 +86,21 @@ export class FixturePage implements OnInit {
         },
         (error) => {
           this.isError = true;
-          this.setFixtureFromLocal();
+          this.setFixture(error);
         }
       );
   }
   /**
-   * In this method fixtures are fetched locally.
-   * This is done due to cricapi.com server went down after days of implementation
-   */
-  setFixtureFromLocal(): void {
-    const localFixtures = require('../../../assets/fixtures.json');
-    this.fixtures = localFixtures.fixtures;
-    this.fixturesFilter = this.fixtures;
-    this.isPromiseResolved = true;
-  }
-  /**
    * In this method fixtures are filtered and assigned.
+   * Else statement added to fetch fixture from local incase api throws error
    */
   setFixture(inp: any): void {
     this.isPromiseResolved = true;
-    if (!this.isError) {
+    if (!this.isError && inp.matches.length > 0) {
       this.fixtures = inp.matches.filter((x) => x.type === 'Twenty20');
     } else {
-      this.setFixtureFromLocal();
+      const localFixtures = require('../../../assets/fixtures.json');
+      this.fixtures = localFixtures.fixtures;
     }
     this.fixturesFilter = this.fixtures;
   }
