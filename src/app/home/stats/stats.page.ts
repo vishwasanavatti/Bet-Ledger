@@ -70,7 +70,7 @@ export class StatsPage implements OnInit {
 
     this.totalBets = finalizedBets.length;
     this.totalAmountPlayed = finalizedBets
-      .map((x) => x.resultAmt)
+      .map((x) => x.amount)
       .reduce((a, b) => a + b, 0);
 
     this.winTotal = wonBets.map((x) => x.resultAmt).reduce((a, b) => a + b, 0);
@@ -87,7 +87,7 @@ export class StatsPage implements OnInit {
           .reduce((a, b) => a + b, 0)
       );
     }
-    if (teamTotals.length === 1 && teamTotals[0] !== 0) {
+    if (teamTotals[0] !== 0) {
       this.biggestWinTeam = [...teamList][
         teamTotals.indexOf(Math.max(...teamTotals))
       ];
@@ -104,7 +104,7 @@ export class StatsPage implements OnInit {
       );
     }
 
-    if (teamTotals.length === 1 && teamTotals[0] !== 0) {
+    if (teamTotals[0] !== 0) {
       this.biggestLossTeam = [...teamList][
         teamTotals.indexOf(Math.max(...teamTotals))
       ];
