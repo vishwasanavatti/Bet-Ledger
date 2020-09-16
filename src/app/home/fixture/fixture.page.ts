@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { StorageService } from '../../services/storage.service';
-import { Ledger, currency, ratio, teamsMap } from '../../model/bet-form.model';
+import { Ledger, currency, teamsMap } from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-fixture',
@@ -31,10 +31,6 @@ export class FixturePage implements OnInit {
    */
   currencies: any;
   /**
-   * holds the constant value and display Name of ratio types
-   */
-  ratType: any;
-  /**
    * holds the boolean value to load the fixtures
    */
   isPromiseResolved = false;
@@ -52,8 +48,7 @@ export class FixturePage implements OnInit {
     team2: '',
     chosenTeam: '',
     date: '',
-    ratioType: '',
-    ratioValue: null,
+    ratio: null,
     amount: null,
     isActive: false,
     result: '',
@@ -68,7 +63,6 @@ export class FixturePage implements OnInit {
     private toastController: ToastController
   ) {
     this.currencies = currency;
-    this.ratType = ratio;
     this.teamMap = teamsMap;
   }
   /**
@@ -76,9 +70,11 @@ export class FixturePage implements OnInit {
    * currently cricapi is used to fetch fixtures of IPL 2020 (can be changed in future based on the tournament)
    */
   ngOnInit() {
-    this.http
+    const val = [];
+    this.setFixture(val);
+    /*this.http
       .get(
-        'https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
+        'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
       )
       .subscribe(
         (response) => {
@@ -88,7 +84,7 @@ export class FixturePage implements OnInit {
           this.isError = true;
           this.setFixture(error);
         }
-      );
+      );*/
   }
   /**
    * In this method fixtures are filtered and assigned.
@@ -96,9 +92,10 @@ export class FixturePage implements OnInit {
    */
   setFixture(inp: any): void {
     this.isPromiseResolved = true;
-    if (!this.isError && inp.matches.length > 0) {
+    /*if (!this.isError && inp.matches.length > 0) {
       this.fixtures = inp.matches.filter((x) => x.type === 'Twenty20');
-    } else {
+    } else */
+    {
       const localFixtures = require('../../../assets/fixtures.json');
       this.fixtures = localFixtures.fixtures;
     }
@@ -138,8 +135,7 @@ export class FixturePage implements OnInit {
       team2: '',
       chosenTeam: '',
       date: '',
-      ratioType: '',
-      ratioValue: null,
+      ratio: null,
       amount: null,
       isActive: false,
       result: '',

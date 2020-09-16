@@ -87,10 +87,11 @@ export class StatsPage implements OnInit {
           .reduce((a, b) => a + b, 0)
       );
     }
-
-    this.biggestWinTeam = [...teamList][
-      teamTotals.indexOf(Math.max(...teamTotals))
-    ];
+    if (teamTotals.length === 1 && teamTotals[0] !== 0) {
+      this.biggestWinTeam = [...teamList][
+        teamTotals.indexOf(Math.max(...teamTotals))
+      ];
+    }
 
     teamTotals = [];
 
@@ -103,9 +104,11 @@ export class StatsPage implements OnInit {
       );
     }
 
-    this.biggestLossTeam = [...teamList][
-      teamTotals.indexOf(Math.max(...teamTotals))
-    ];
+    if (teamTotals.length === 1 && teamTotals[0] !== 0) {
+      this.biggestLossTeam = [...teamList][
+        teamTotals.indexOf(Math.max(...teamTotals))
+      ];
+    }
 
     teamTotals = [];
 

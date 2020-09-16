@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular';
-import { Ledger, ratio, currency, result } from '../../../model/bet-form.model';
+import { Ledger, currency, result } from '../../../model/bet-form.model';
 
 @Component({
   selector: 'app-update-bet-entry',
@@ -12,14 +12,9 @@ export class UpdateBetEntryComponent {
     private modalController: ModalController,
     private alertController: AlertController
   ) {
-    this.ratType = ratio;
     this.currencies = currency;
     this.results = result;
   }
-  /**
-   * holds the constant value and display Name of ratio types
-   */
-  ratType: any;
   /**
    * holds the constant value and display Name of currencies
    */
@@ -80,27 +75,6 @@ export class UpdateBetEntryComponent {
       if (this.updateEntry.result === 'nr') {
         this.updateEntry.resultAmt = 0.0;
       } else {
-        if (this.updateEntry.ratioType) {
-          if (
-            (this.updateEntry.ratioType === 'give' &&
-              this.updateEntry.result === 'won') ||
-            (this.updateEntry.ratioType === 'get' &&
-              this.updateEntry.result === 'lost')
-          ) {
-            this.updateEntry.resultAmt = this.updateEntry.amount;
-          } else {
-            this.updateEntry.resultAmt =
-              this.updateEntry.amount * this.updateEntry.ratioValue;
-          }
-        } else {
-          if (this.updateEntry.result === 'won') {
-            this.updateEntry.resultAmt =
-              this.updateEntry.amount * (this.updateEntry.ratioValue - 1) -
-              this.updateEntry.amount * this.updateEntry.ratioValue * 0.05; // 5% tax on bet365
-          } else {
-            this.updateEntry.resultAmt = this.updateEntry.amount;
-          }
-        }
       }
       this.updateEntry.resultAmt =
         Math.round(this.updateEntry.resultAmt * 100) / 100;

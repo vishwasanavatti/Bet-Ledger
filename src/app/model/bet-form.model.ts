@@ -5,8 +5,7 @@ export interface Ledger {
   team2: string;
   chosenTeam: string;
   date: string;
-  ratioType: string;
-  ratioValue: number;
+  ratio: number;
   amount: number;
   isActive: boolean;
   result: string;
@@ -26,17 +25,6 @@ export const currency = [
   {
     value: 'EUR',
     displayName: 'EUR',
-  },
-];
-
-export const ratio = [
-  {
-    value: 'give',
-    displayName: 'Give',
-  },
-  {
-    value: 'get',
-    displayName: 'Get',
   },
 ];
 

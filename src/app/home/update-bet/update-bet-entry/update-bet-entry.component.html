@@ -23,17 +23,6 @@
         <ion-item class="ion-no-padding entry-item">
           <ion-icon slot="start" name="trending-up" size="medium"></ion-icon>
           <ion-label class="ion-select-label">Ratio</ion-label>
-          <ion-select
-            slot="end"
-            interface="popover"
-            placeholder="{{ updateEntry.ratioType }}"
-            [(ngModel)]="updateEntry.ratioType"
-            (ionChange)="amoutUpdate()"
-          >
-            <ion-select-option *ngFor="let val of ratType" [value]="val.value">
-              {{ val.displayName }}</ion-select-option
-            >
-          </ion-select>
         </ion-item>
       </ion-col>
       <ion-col>
@@ -41,7 +30,7 @@
           <ion-input
             class="ion-no-padding"
             type="number"
-            [(ngModel)]="updateEntry.ratioValue"
+            [(ngModel)]="updateEntry.ratio"
             placeholder="ratio"
             (ionChange)="amoutUpdate()"
           >
