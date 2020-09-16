@@ -55,6 +55,18 @@ ion-title {
   color: var(--ion-color-light);
 }
 
+ion-title.md {
+  text-align: center;
+}
+
+ion-button.md {
+  color: var(--ion-color-light);
+}
+
+ion-radio.md {
+  margin-left: 20px;
+}
+
 /*
 * Custom modification for dark mode
 */
@@ -62,7 +74,8 @@ ion-title {
   .control-button {
     color: var(--ion-color-light);
   }
-  ion-title {
+  ion-title,
+  ion-button.md {
     color: var(--ion-color-primary) !important;
   }
   ion-card-title,
@@ -72,6 +85,10 @@ ion-title {
 
   ion-card-content {
     background: black;
+  }
+
+  ion-card-content.md {
+    background: transparent;
   }
 
   .message-css {
