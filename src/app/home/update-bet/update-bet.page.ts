@@ -67,7 +67,6 @@ export class UpdateBetPage implements OnInit {
           data.isActive = false;
           this.activeBets.splice(i, 1);
         }
-        data = this.currencyConvertor(data);
         this.storage.updateBet(data.id.toString(), data);
       } else {
         window.location.reload();
@@ -105,21 +104,6 @@ export class UpdateBetPage implements OnInit {
     });
 
     await alert.present();
-  }
-  /**
-   * In this method the conversion of amount to euro takes place
-   */
-  currencyConvertor(val: any): any {
-    if (val.currency === 'INR') {
-      val.resultAmt = Number(
-        (val.resultAmt / conversionRate.eurToInr).toFixed(2)
-      );
-    } else if (val.currency === 'USD') {
-      val.resultAmt = Number(
-        (val.resultAmt / conversionRate.eurToUsd).toFixed(2)
-      );
-    }
-    return val;
   }
   /**
    * this method navigates back to home

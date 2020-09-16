@@ -37,10 +37,8 @@
               <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
                 >{{data.resultAmt}}</span
               >
-              EUR
-              <span class="ratio"
-                >ratio: {{data.ratioValue}} {{data.ratioType}}</span
-              >
+              {{data.currency}}
+              <span class="ratio">ratio: {{data.ratio}} </span>
             </p>
           </ion-label>
           <div>

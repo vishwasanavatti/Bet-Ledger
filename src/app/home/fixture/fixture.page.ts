@@ -70,9 +70,7 @@ export class FixturePage implements OnInit {
    * currently cricapi is used to fetch fixtures of IPL 2020 (can be changed in future based on the tournament)
    */
   ngOnInit() {
-    const val = [];
-    this.setFixture(val);
-    /*this.http
+    this.http
       .get(
         'https://cors-anywhere.herokuapp.com/https://cricapi.com/api/matches/?apikey=yJMDk1hYBZYZ92CVYtQzJb65oRq1'
       )
@@ -84,7 +82,7 @@ export class FixturePage implements OnInit {
           this.isError = true;
           this.setFixture(error);
         }
-      );*/
+      );
   }
   /**
    * In this method fixtures are filtered and assigned.
@@ -92,10 +90,9 @@ export class FixturePage implements OnInit {
    */
   setFixture(inp: any): void {
     this.isPromiseResolved = true;
-    /*if (!this.isError && inp.matches.length > 0) {
+    if (!this.isError && inp.matches.length > 0) {
       this.fixtures = inp.matches.filter((x) => x.type === 'Twenty20');
-    } else */
-    {
+    } else {
       const localFixtures = require('../../../assets/fixtures.json');
       this.fixtures = localFixtures.fixtures;
     }

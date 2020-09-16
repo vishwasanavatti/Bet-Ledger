@@ -75,6 +75,13 @@ export class UpdateBetEntryComponent {
       if (this.updateEntry.result === 'nr') {
         this.updateEntry.resultAmt = 0.0;
       } else {
+        if (this.updateEntry.result === 'lost') {
+          // check whether to update -ve value or not
+          this.updateEntry.resultAmt = -this.updateEntry.amount;
+        } else {
+          this.updateEntry.resultAmt =
+            this.updateEntry.amount * this.updateEntry.ratio;
+        }
       }
       this.updateEntry.resultAmt =
         Math.round(this.updateEntry.resultAmt * 100) / 100;
