@@ -54,7 +54,17 @@ export const teamsMap = {
   'Rajasthan Royals': 'RR',
 };
 
-export const conversionRate = {
-  eurToInr: 87,
-  eurToUsd: 1.18,
+export const convertInr = {
+  EUR: 0.0114,
+  USD: 0.0136,
+};
+
+export const convertUSD = {
+  INR: 73.46,
+  EUR: 0.844,
+};
+
+export const convertEUR = {
+  INR: 87.01,
+  USD: 1.184,
 };

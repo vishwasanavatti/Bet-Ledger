@@ -17,7 +17,7 @@
         slot="end"
         interface="popover"
         [(ngModel)]="currencySelected"
-        (ionChange)="currencyValUpdate()"
+        (ionChange)="fetchDataForStats()"
       >
         <ion-select-option *ngFor="let val of currencies" [value]="val.value">
           {{ val.displayName }}</ion-select-option
@@ -41,7 +41,7 @@
       </ion-col>
       <ion-col size="4" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{(totalAmountPlayed * conversionValue).toFixed(2)}}</ion-label
+          >{{(totalAmountPlayed *1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -53,7 +53,7 @@
       </ion-col>
       <ion-col size="4" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{wonMatches}}/{{(winTotal * conversionValue).toFixed(2)}}</ion-label
+          >{{wonMatches}}/{{(winTotal* 1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -65,8 +65,7 @@
       </ion-col>
       <ion-col size="4" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{lostMatches}}/{{(lossTotal *
-          conversionValue).toFixed(2)}}</ion-label
+          >{{lostMatches}}/{{(lossTotal * 1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -77,7 +76,7 @@
       </ion-col>
       <ion-col size="4" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{((winTotal-lossTotal) * conversionValue).toFixed(2)}}</ion-label
+          >{{((winTotal-totalAmountPlayed) * 1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -88,8 +87,7 @@
       </ion-col>
       <ion-col size="5" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{biggestWinTeam}}: {{(biggestWin *
-          conversionValue).toFixed(2)}}</ion-label
+          >{{biggestWinTeam}}: {{(biggestWin * 1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -99,8 +97,7 @@
       </ion-col>
       <ion-col size="5" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{biggestLossTeam}}: {{(biggestLoss *
-          conversionValue).toFixed(2)}}</ion-label
+          >{{biggestLossTeam}}: {{(biggestLoss * 1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -113,8 +110,8 @@
       </ion-col>
       <ion-col size="5" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{favouriteTeam}}: {{(favouriteTeamTotal *
-          conversionValue).toFixed(2)}}</ion-label
+          >{{mostProfitableTeam}}: {{(mostProfitableTeamTotal*
+          1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>
@@ -127,8 +124,8 @@
       </ion-col>
       <ion-col size="5" class="ion-no-padding">
         <ion-label class="ion-no-padding stat-value"
-          >{{worstTeam}}: {{(worstTeamTotal *
-          conversionValue).toFixed(2)}}</ion-label
+          >{{leastProfitableTeam}}: {{(leastProfitableTeamTotal*
+          1).toFixed(2)}}</ion-label
         >
       </ion-col>
     </ion-item>

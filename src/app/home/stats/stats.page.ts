@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { Ledger, currency, conversionRate } from '../../model/bet-form.model';
+import {
+  Ledger,
+  currency,
+  convertInr,
+  convertEUR,
+  convertUSD,
+} from '../../model/bet-form.model';
 
 @Component({
   selector: 'app-stats',
@@ -18,9 +24,11 @@ export class StatsPage implements OnInit {
    */
   currencySelected: string;
   /**
-   * holds the currency conversion value
+   * holds the conversion value of respective currecies
    */
-  conversionValue: number;
+  conversionInr: any;
+  conversionEur: any;
+  conversionUsd: any;
   /**
    * These variables holds the stats value
    */
@@ -34,23 +42,32 @@ export class StatsPage implements OnInit {
   totalAmountPlayed: number;
   wonMatches: number;
   lostMatches: number;
-  favouriteTeam: string;
-  worstTeam: string;
-  favouriteTeamTotal: number;
-  worstTeamTotal: number;
+  mostProfitableTeam: string;
+  leastProfitableTeam: string;
+  mostProfitableTeamTotal: number;
+  leastProfitableTeamTotal: number;
 
   constructor(
     private navController: NavController,
     private storage: StorageService
   ) {
     this.currencies = currency;
-    this.conversionValue = 1;
+    this.conversionInr = convertInr;
+    this.conversionEur = convertEUR;
+    this.conversionUsd = convertUSD;
     this.currencySelected = 'EUR';
   }
   /**
    * In this method all bets are fetched from local storage
    */
   ngOnInit() {
+    this.fetchDataForStats();
+  }
+  /**
+   * In this method bet data are fetched from storage and
+   * data is sent as input for stats calculation
+   */
+  fetchDataForStats() {
     this.storage
       .getAllBets<Ledger>()
       .then((betRecords) => this.statsCalculation(betRecords));
@@ -59,7 +76,21 @@ export class StatsPage implements OnInit {
    * In this method stats are calculated
    */
   statsCalculation(val: Ledger[]): void {
-    const finalizedBets = val.filter((x) => x.result && x.result !== '');
+    const bets = val.filter((x) => x.result && x.result !== '');
+    const finalizedBets = [];
+    for (const x of bets) {
+      if (x.currency === 'INR' && x.currency !== this.currencySelected) {
+        x.amount *= this.conversionInr[this.currencySelected];
+        x.resultAmt *= this.conversionInr[this.currencySelected];
+      } else if (x.currency === 'EUR' && x.currency !== this.currencySelected) {
+        x.amount *= this.conversionEur[this.currencySelected];
+        x.resultAmt *= this.conversionEur[this.currencySelected];
+      } else if (x.currency === 'USD' && x.currency !== this.currencySelected) {
+        x.amount *= this.conversionUsd[this.currencySelected];
+        x.resultAmt *= this.conversionUsd[this.currencySelected];
+      }
+      finalizedBets.push(x);
+    }
     const wonBets = finalizedBets.filter((x) => x.result === 'won');
     const lostBets = finalizedBets.filter((x) => x.result === 'lost');
     this.wonMatches = wonBets.length;
@@ -69,6 +100,7 @@ export class StatsPage implements OnInit {
     let teamTotals: Array<number> = [];
 
     this.totalBets = finalizedBets.length;
+
     this.totalAmountPlayed = finalizedBets
       .map((x) => x.amount)
       .reduce((a, b) => a + b, 0);
@@ -87,7 +119,8 @@ export class StatsPage implements OnInit {
           .reduce((a, b) => a + b, 0)
       );
     }
-    if (teamTotals[0] !== 0) {
+
+    if (teamTotals.some((x) => x > 0)) {
       this.biggestWinTeam = [...teamList][
         teamTotals.indexOf(Math.max(...teamTotals))
       ];
@@ -104,7 +137,7 @@ export class StatsPage implements OnInit {
       );
     }
 
-    if (teamTotals[0] !== 0) {
+    if (teamTotals.some((x) => x > 0)) {
       this.biggestLossTeam = [...teamList][
         teamTotals.indexOf(Math.max(...teamTotals))
       ];
@@ -133,28 +166,19 @@ export class StatsPage implements OnInit {
       );
     }
 
-    this.favouriteTeam = [...teamList][
+    this.mostProfitableTeam = [...teamList][
       teamTotals.indexOf(Math.max(...teamTotals))
     ];
 
-    this.favouriteTeamTotal =
+    this.mostProfitableTeamTotal =
       teamTotals.length > 0 ? Math.max(...teamTotals) : 0;
 
-    this.worstTeam = [...teamList][teamTotals.indexOf(Math.min(...teamTotals))];
+    this.leastProfitableTeam = [...teamList][
+      teamTotals.indexOf(Math.min(...teamTotals))
+    ];
 
-    this.worstTeamTotal = teamTotals.length > 0 ? Math.min(...teamTotals) : 0;
-  }
-  /**
-   * In this method all the conversion rate is altered based on selection
-   */
-  currencyValUpdate(): void {
-    if (this.currencySelected === 'INR') {
-      this.conversionValue = conversionRate.eurToInr;
-    } else if (this.currencySelected === 'USD') {
-      this.conversionValue = conversionRate.eurToUsd;
-    } else {
-      this.conversionValue = 1;
-    }
+    this.leastProfitableTeamTotal =
+      teamTotals.length > 0 ? Math.min(...teamTotals) : 0;
   }
   /**
    * this method navigates back to home
