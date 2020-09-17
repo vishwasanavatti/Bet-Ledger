@@ -1,36 +1,3 @@
-.bet-entry > ion-label {
-  padding-left: 1rem;
-}
-
-.list-style {
-  margin: 15px;
-}
-
-.match-head,
-.teams-css,
-.values {
-  color: var(--ion-color-dark);
-  font-weight: bold;
-  font-size: 15px;
-}
-
-.match-date,
-.ratio {
-  float: right;
-}
-
-.teams-css {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  font-size: 20px;
-}
-
-.values {
-  font-size: 15px;
-  font-weight: normal;
-}
-
 .won-css {
   color: var(--ion-color-success);
 }

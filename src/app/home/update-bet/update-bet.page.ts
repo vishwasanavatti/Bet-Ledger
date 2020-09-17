@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from '@ionic/angular';
 import { StorageService } from '../../services/storage.service';
-import { Ledger, teamsMap, conversionRate } from '../../model/bet-form.model';
+import { Ledger, teamsMap } from '../../model/bet-form.model';
 import { ModalController } from '@ionic/angular';
 import { UpdateBetEntryComponent } from './update-bet-entry/update-bet-entry.component';
 
