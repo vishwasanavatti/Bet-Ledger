@@ -136,7 +136,7 @@ export class FixturePage implements OnInit {
       amount: null,
       isActive: false,
       result: '',
-      currency: '',
+      currency: 'EUR',
       resultAmt: null,
     };
 

@@ -21,7 +21,6 @@ export class StatsPage implements OnInit {
    * holds the currency conversion value
    */
   conversionValue: number;
-
   /**
    * These variables holds the stats value
    */
@@ -46,6 +45,7 @@ export class StatsPage implements OnInit {
   ) {
     this.currencies = currency;
     this.conversionValue = 1;
+    this.currencySelected = 'EUR';
   }
   /**
    * In this method all bets are fetched from local storage
