@@ -4,7 +4,16 @@
 .list-style {
   margin: 15px;
 }
+
+.list-style.md {
+  margin: 0px;
+}
+
 .entry-item {
   padding-top: 5px;
   padding-bottom: 10px;
+}
+
+ion-row.md {
+  height: 60px;
 }

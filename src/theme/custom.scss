@@ -34,10 +34,14 @@
   margin: 15px;
 }
 
+.list-style.md {
+  margin: 10px;
+}
+
 .match-head,
 .teams-css,
 .values {
-  color: var(--ion-color-dark);
+  color: var(--ion-color-dark) !important;
   font-weight: bold;
   font-size: 15px;
 }
@@ -51,7 +55,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
-  font-size: 20px;
+  font-size: 20px !important;
   min-height: 70px;
 }
 
@@ -117,6 +121,11 @@ ion-radio.md {
   ion-button.md {
     color: var(--ion-color-primary) !important;
   }
+
+  .save-button ion-button.md {
+    color: var(--ion-color-dark) !important;
+  }
+
   ion-card-title,
   ion-label {
     color: var(--ion-color-light);

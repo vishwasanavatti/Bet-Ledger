@@ -15,42 +15,36 @@ ion-header ion-toolbar {
   }
 }
 
-.container {
+.appName-container {
   min-height: 50%;
-  background: #131313;
-}
-
-.appName1,
-.appName2,
-.tournamentName {
-  position: absolute;
-  height: 50px;
-  top: 150px;
-
-  font-weight: bolder;
-  font-size: 48px;
-
-  display: flex;
-  align-items: center;
+  margin: auto;
+  height: 50%;
+  width: 50%;
   text-align: center;
 }
 
+.appName-container div,
+.appName-container span {
+  position: relative;
+  top: 50%;
+}
+
+.appName {
+  display: inline-flex;
+  font-size: 36px;
+  font-weight: bold;
+}
+
 .appName1 {
-  width: 80px;
-  left: 100px;
   color: var(--ion-color-success);
 }
 
 .appName2 {
-  width: 175px;
-  left: 180px;
   color: var(--ion-color-danger);
 }
 
 .tournamentName {
   color: var(--ion-color-medium);
-  top: 200px;
-  left: 160px;
   font-size: 24px;
 }
 
