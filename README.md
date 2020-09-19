@@ -2,7 +2,7 @@
 
 A mobile application to keep track of bets
 
-<img src="images/home_page.png" width="250px" style="border: 1px solid #e0e0e0;">
+<img src="images/home_page.jpeg" width="250px" style="border: 1px solid #e0e0e0;">
 
 # Development
 
@@ -29,3 +29,11 @@ go to project folder - `cd betLedger`
 or
 
 `ionic serve` - server will start on `localhost:8100`
+
+# Android APK
+
+Different version of apk are available in the drive.
+
+[Download and install the app for android](https://drive.google.com/drive/folders/1cejgdkDkCvlzuZiAduVC4-XZAMt-SET-?usp=sharing)
+
+> The app also supports ios and dark mode.
