@@ -79,7 +79,7 @@ export class UpdateBetEntryComponent {
           this.updateEntry.resultAmt = this.updateEntry.amount;
         } else {
           this.updateEntry.resultAmt =
-            this.updateEntry.amount * this.updateEntry.ratio;
+            this.updateEntry.amount * this.updateEntry.ratio * 0.95;
         }
       }
       this.updateEntry.resultAmt =

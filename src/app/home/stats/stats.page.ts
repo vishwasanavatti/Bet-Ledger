@@ -159,6 +159,10 @@ export class StatsPage implements OnInit {
           .filter((x) => x.chosenTeam === team)
           .map((x) => x.resultAmt)
           .reduce((a, b) => a + b, 0) -
+          wonBets
+            .filter((x) => x.chosenTeam === team)
+            .map((x) => x.amount)
+            .reduce((a, b) => a + b, 0) -
           lostBets
             .filter((x) => x.chosenTeam === team)
             .map((x) => x.resultAmt)

@@ -16,7 +16,7 @@
         <ion-item class="bet-entry ion-no-padding">
           <ion-label>
             <p class="match-head">
-              Match {{ data.matchNumber }}
+              Amount Played: {{ data.amount }}
               <span class="match-date">{{data.date}}</span>
             </p>
 
@@ -33,10 +33,13 @@
             </p>
 
             <p class="values">
-              Amount:
-              <span [ngClass]="data.result === 'won'? 'won-css' : 'lost-css'"
-                >{{data.resultAmt}}</span
+              profit/loss:
+              <span *ngIf="data.result === 'won'" class="won-css">
+                {{data.resultAmt - data.amount}}</span
               >
+              <span *ngIf="data.result === 'lost'" class="lost-css">
+                {{data.resultAmt}}
+              </span>
               {{data.currency}}
               <span class="ratio">ratio: {{data.ratio}} </span>
             </p>
