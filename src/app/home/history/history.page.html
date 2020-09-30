@@ -35,7 +35,7 @@
             <p class="values">
               profit/loss:
               <span *ngIf="data.result === 'won'" class="won-css">
-                {{data.resultAmt - data.amount}}</span
+                {{(data.resultAmt - data.amount).toFixed(2)}}</span
               >
               <span *ngIf="data.result === 'lost'" class="lost-css">
                 {{data.resultAmt}}
