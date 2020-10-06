@@ -116,7 +116,7 @@ export class StatsPage implements OnInit {
         wonBets
           .filter((x) => x.chosenTeam === team)
           .map((x) => x.resultAmt)
-          .reduce((a, b) => a + b, 0)
+          .reduce((a, b) => (a > b ? a : b), 0)
       );
     }
 
@@ -133,7 +133,7 @@ export class StatsPage implements OnInit {
         lostBets
           .filter((x) => x.chosenTeam === team)
           .map((x) => x.resultAmt)
-          .reduce((a, b) => a + b, 0)
+          .reduce((a, b) => (a > b ? a : b), 0)
       );
     }
 
