@@ -22,9 +22,17 @@ export class HistoryPage implements OnInit {
    */
   betRecords: Ledger[];
   /**
+   * holds the copy of fixtures
+   */
+  betFilters: Ledger[];
+  /**
    * Holds the size of completed bets
    */
   betRecordsSize: number;
+  /**
+   * holds the value to search in the fixture list
+   */
+  searchValue: string;
   /**
    * In this method all bets are fetched from local storage
    */
@@ -37,10 +45,11 @@ export class HistoryPage implements OnInit {
    * In this method all the completed bets are filtered
    */
   betList(inp: Array<Ledger>): void {
-    this.betRecords = inp.filter(
+    this.betFilters = inp.filter(
       (x) => x.isActive === false && x.result && x.result !== ''
     );
-    this.betRecordsSize = this.betRecords.length;
+    this.betRecordsSize = this.betFilters.length;
+    this.betRecords = this.betFilters;
   }
   /**
    * In this method an alert is displayed to confirm the deletion of bet
@@ -77,5 +86,26 @@ export class HistoryPage implements OnInit {
    */
   goBack() {
     this.navController.navigateRoot('/home');
+  }
+  /**
+   * In this method fixtures are filtered based on search value.
+   */
+  search(): void {
+    if (this.searchValue && this.searchValue.trim() !== ' ') {
+      this.betRecords = this.betFilters.filter(
+        (item) =>
+          item.team1
+            .toLowerCase()
+            .indexOf(this.searchValue.toLowerCase().trim()) > -1 ||
+          item.team2
+            .toLowerCase()
+            .indexOf(this.searchValue.toLowerCase().trim()) > -1 ||
+          item.date
+            .toLowerCase()
+            .indexOf(this.searchValue.toLowerCase().trim()) > -1
+      );
+    } else {
+      this.betRecords = this.betFilters;
+    }
   }
 }

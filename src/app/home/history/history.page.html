@@ -9,6 +9,13 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-searchbar
+  class="searchBar"
+  placeholder="Search"
+  [(ngModel)]="searchValue"
+  (ionChange)="search()"
+></ion-searchbar>
+
 <ion-content>
   <span *ngIf="betRecordsSize > 0">
     <ion-list class="list-style">
